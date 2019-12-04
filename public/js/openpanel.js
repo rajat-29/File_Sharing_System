@@ -10,3 +10,13 @@ function openbar()
     var element = document.getElementById("rightview");
     element.classList.toggle("set-rightview");
 }
+
+function dashboard()
+{
+    window.location = '/login/home';
+}
+
+function open_adduser_page()
+{
+    window.location = '/admin/addUser';
+}

@@ -43,5 +43,6 @@ mongoose.connection.on('connected',(err) => {
 })
 
 app.use('/login',require('./Routes/login'));
+app.use('/admin',require('./Routes/admin'));
 
 app.listen(port,()=>{console.log("Running on port "+port);});
