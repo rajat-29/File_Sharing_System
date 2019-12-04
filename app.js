@@ -6,7 +6,7 @@ var ejs = require('ejs');
 var mongodb = require('mongodb');
 var port=8000;
 
-app.set('views', path.join(__dirname, 'views'));  // view engine setup
+app.set('views', path.join(__dirname, 'Views'));  // view engine setup
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'/public'))) /*folder path*/
 
