@@ -19,6 +19,11 @@ app.post('/checkLogin',function(req,res) {
 			req.session.email = req.body.email;
 			req.session.name = result.name;       
             req.session.password = result.password;
+            req.session.phone = result.phone;       
+            req.session.city = result.city;       
+            req.session.gender = result.gender;       
+            req.session.role = result.role;       
+            req.session.status = result.status;       
             res.send(true); 
 		}
 		//res.send(false);

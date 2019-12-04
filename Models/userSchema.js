@@ -8,7 +8,6 @@ var userSchema = new mongoose.Schema({
     phone: String,
     city: String,
     gender: String,
-    dob: String,
     role: String,   
     status: String,
 })
