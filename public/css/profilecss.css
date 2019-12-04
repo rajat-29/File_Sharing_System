@@ -1,0 +1,54 @@
+.div-min-width
+{
+    min-width: 360px;
+}
+.imageDiv
+{
+    display: none;
+}
+#profilepic
+{
+    width: 150px;
+    height: 150px;
+    padding: 0.25rem;
+    background-color: #FCFCFC;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+}
+.panelDiv
+{
+    box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+}
+.to-center-div
+{
+    margin-top: 2%;
+}
+
+
+
+
+
+@media (min-width: 768px)
+{
+    .imageDiv
+    {
+        display: block;
+    }
+    .to-center-div
+    {
+        margin-left:60px;
+    }
+
+}
+
+@media (max-width: 768px)
+{
+    .imageDiv
+    {
+        display: block;
+        margin-left: 80px;
+    }
+
+}
