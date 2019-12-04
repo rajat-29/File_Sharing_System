@@ -8,8 +8,10 @@ var userSchema = new mongoose.Schema({
     phone: String,
     city: String,
     gender: String,
+    dob : String,
     role: String,   
     status: String,
+    photoname: String,
 })
 
 module.exports = mongoose.model('users', userSchema);

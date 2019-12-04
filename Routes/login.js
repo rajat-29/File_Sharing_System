@@ -24,6 +24,7 @@ app.post('/checkLogin',function(req,res) {
             req.session.gender = result.gender;       
             req.session.role = result.role;       
             req.session.status = result.status;       
+            req.session.photoname = result.photoname;     
             res.send(true); 
 		}
 		//res.send(false);

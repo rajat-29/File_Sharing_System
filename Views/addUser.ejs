@@ -33,27 +33,26 @@
                                     <h1 class="heading">Add User</h1>
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" placeholder="Name" required><br>
+                                            <input type="text" class="form-control" id="user_name" placeholder="Name" autocomplete="off" required><br>
                                         </div>
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email2" placeholder="Email" onchange="email_avail()" required><br>
+                                                <input type="text" class="form-control" id="user_email" placeholder="Email" onchange="email_avail()" required><br>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="password2" placeholder="User Password" required><br>
+                                                <input type="password" class="form-control" id="user_pass" placeholder="User Password" required><br>
                                             </div>
                                             <div class="form-group">
-                                                <input type="number" class="form-control" id="phone" pattern="\d*" placeholder="Phone" maxlength="10"><br>
+                                                <input type="number" class="form-control" id="user_phone" pattern="\d*" placeholder="Phone" maxlength="10"><br>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="City" placeholder="City" required><br>
+                                                <input type="text" class="form-control" id="user_city" placeholder="City" required><br>
                                             </div>
                                             <div class="form-group">
                                                 <label>Role</label>
                                                 <br>
-                                                <select data-style="btn-info" class="form-control" id="roleid">
+                                                <select data-style="btn-info" class="form-control" id="user_role">
                                                     <optgroup label="Select User Role">
                                                         <option value="User">User</option>
-                                                        <option value="Community Manager">Community Builder</option>
                                                         <option value="admin">Admin</option>
                                                     </optgroup>
                                                 </select>
@@ -61,7 +60,7 @@
                                             <div class="form-group">
                                                 <label>Gender</label>
                                                 <br>
-                                                <select data-style="btn-info" class="form-control" id="genderid">
+                                                <select data-style="btn-info" class="form-control" id="user_gender">
                                                     <optgroup label="Select Gender">
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
@@ -81,4 +80,4 @@
             </div>
         </div>
 </html>
-<script type="text/javascript" src="js/adduser.js"></script>
+<script type="text/javascript" src="js/addUser.js"></script>

@@ -11,4 +11,14 @@ app.get('/addUser', function(req,res) {
 	res.render('addUser',{data : req.session});
 })
 
+app.post('/addnewuser',function (req, res) {    
+    users.create(req.body,function(error,res)
+    {
+        if(error)
+        throw error;
+        else{}
+     })       
+    res.send("data saved");
+  }) 
+
 module.exports = app;
