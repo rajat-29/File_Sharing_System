@@ -12,3 +12,5 @@ var userSchema = new mongoose.Schema({
     role: String,   
     status: String,
 })
+
+module.exports = mongoose.model('users', userSchema);
