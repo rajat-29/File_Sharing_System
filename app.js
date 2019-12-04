@@ -15,7 +15,6 @@ var mongoDB = 'mongodb://localhost/fileManagement';
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect(mongoDB,{ useNewUrlParser: true});
-
 var db = mongoose.connection;
 
 app.use(express.urlencoded({extended: true}))
@@ -32,7 +31,6 @@ app.use(session({
     autoRemove: 'native',
     cookie: {maxAge: 3000000}
 }))
-
 
 mongoose.connection.on('error',(err) => {					/*database connect*/
     console.log('DB connection Error');

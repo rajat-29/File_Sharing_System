@@ -13,7 +13,7 @@ app.post('/checkLogin',function(req,res) {
 	{
 		if(error)
 			throw error;
-		else
+		if(result)
 		{
 			req.session.isLogin = 1;
 			req.session.email = req.body.email;
@@ -25,9 +25,9 @@ app.post('/checkLogin',function(req,res) {
             req.session.role = result.role;       
             req.session.status = result.status;       
             req.session.photoname = result.photoname;     
-            res.send(true); 
+           var re = req.session.redirectUrl || '/login/home';
+           res.send(re);
 		}
-		//res.send(false);
 	})
 })
 

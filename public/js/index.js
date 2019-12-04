@@ -14,12 +14,8 @@ user_submit.addEventListener("click", function() {
 	request.setRequestHeader("Content-Type", "application/json");
 	request.send(JSON.stringify({email : user_name.value,password : user_pass.value}));
 	request.addEventListener("load", function() {
-		var data = JSON.parse(request.responseText);
-		if(data == true)
-		{
-			window.location = '/login/home';
-		}
-		
+		var data = request.responseText;
+		console.log(request.responseText)
+		window.location = data;
 	})
-
 })
