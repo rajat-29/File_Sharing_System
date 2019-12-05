@@ -20,3 +20,23 @@ function open_adduser_page()
 {
     window.location = '/admin/addUser';
 }
+
+function openlogoutpage()
+{
+    $.confirm({
+    theme: 'supervan',
+    title: 'Confirm Logout!',
+    content: 'Do you really want logout?',
+    draggable: true,
+    buttons: {
+        Yes: {
+            action: function () {
+             window.location = "/login/logout";
+        }
+    },
+        No: {
+             action: function () {}
+    },
+    }
+    });
+}

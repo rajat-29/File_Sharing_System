@@ -25,14 +25,24 @@ app.post('/checkLogin',function(req,res) {
             req.session.role = result.role;       
             req.session.status = result.status;       
             req.session.photoname = result.photoname;     
-           var re = req.session.redirectUrl || '/login/home';
-           res.send(re);
+            var re = req.session.redirectUrl || '/login/home';
+            res.send(re);
+		}
+		else
+		{
+			res.send('false');
 		}
 	})
 })
 
 app.get('/home',function(req,res) {
 	res.render('dashboard',{data : req.session});
+})
+
+app.get('/logout', function(req,res) {
+    req.session.isLogin = 0;
+    req.session.destroy();
+    res.render('index');
 })
 
 module.exports = app;

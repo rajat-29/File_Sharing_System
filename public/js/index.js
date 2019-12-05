@@ -15,7 +15,13 @@ user_submit.addEventListener("click", function() {
 	request.send(JSON.stringify({email : user_name.value,password : user_pass.value}));
 	request.addEventListener("load", function() {
 		var data = request.responseText;
-		console.log(request.responseText)
-		window.location = data;
+		if(data == 'false')
+		{
+			alert("Email or Password Doesn't Match")
+		}
+		else
+		{
+			window.location = data;
+		}
 	})
 })
