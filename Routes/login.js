@@ -43,6 +43,18 @@ app.get('/changePassword',function(req,res) {
 	res.render('changePassword',{data : req.session});
 })
 
+app.post('/changePassword',function(req,res) {
+    users.updateOne({"email" : req.session.email},{$set: { "password" : req.body.newpass}} ,
+        function(error,result)
+        {
+            if(error)
+                throw error;
+            else
+               req.session.password = req.body.newpass;
+        })   
+        res.send("Password Changed Successfully")
+}) 
+
 app.get('/logout', function(req,res) {
     req.session.isLogin = 0;
     req.session.destroy();

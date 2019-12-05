@@ -22,7 +22,7 @@ function checkLength() {
 }
 
 function checkCapital(strings) {
-	if(strings.search(/[A-Z]/) > 0)
+	if(strings.search(/[A-Z]/) >= 0)
 	{
 		document.getElementById("ucase").className = "glyphicon glyphicon-ok";
 		document.getElementById("ucase").style.color = "green";
@@ -101,9 +101,21 @@ submitbtn.addEventListener("click", function() {
         return;
     }
 
+    var obj = new Object();
+	obj.oldpass = oldpass.value;
+	obj.newpass = newpass.value;
+
     if(len == 1 && small == 1 && big == 1 && no == 1 && mat == 1)
     {
-    	
+    	var request = new XMLHttpRequest();
+		request.open('POST', '/login/changePassword');
+	    request.setRequestHeader("Content-Type","application/json");
+	    request.send(JSON.stringify(obj))
+	    request.onload = function ()
+	    {
+	    	alert(request.responseText);
+	    	location.reload();
+	    }  
     }
     else
     {
