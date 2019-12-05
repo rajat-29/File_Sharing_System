@@ -39,6 +39,10 @@ app.get('/home',function(req,res) {
 	res.render('dashboard',{data : req.session});
 })
 
+app.get('/changePassword',function(req,res) {
+	res.render('changePassword',{data : req.session});
+})
+
 app.get('/logout', function(req,res) {
     req.session.isLogin = 0;
     req.session.destroy();

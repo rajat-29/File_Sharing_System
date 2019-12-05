@@ -21,6 +21,11 @@ function open_adduser_page()
     window.location = '/admin/addUser';
 }
 
+function changepassword()
+{
+    window.location = "/login/changePassword";
+}
+
 function openlogoutpage()
 {
     $.confirm({
