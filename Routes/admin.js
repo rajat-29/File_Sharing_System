@@ -20,6 +20,10 @@ app.post('/addnewuser',auth, function (req, res) {
         else{}
      })       
     res.send("data saved");
-  }) 
+})
+
+app.get('/userList',auth,function(req,res){  
+      res.render('userlist', {data: req.session});
+}) 
 
 module.exports = app;

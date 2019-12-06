@@ -21,6 +21,11 @@ function open_adduser_page()
     window.location = '/admin/addUser';
 }
 
+function openuserlist()
+{
+    window.location = '/admin/userList';
+}
+
 function changepassword()
 {
     window.location = "/login/changePassword";
