@@ -12,6 +12,7 @@ var userSchema = new mongoose.Schema({
     role: String,   
     status: String,
     photoname: String,
+    flag: String,
 })
 
 module.exports = mongoose.model('users', userSchema);

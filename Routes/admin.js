@@ -60,13 +60,7 @@ app.post('/showuser',auth,function(req, res) {
 
     if(req.body.order[0].column === '0')
         params = {skip : parseInt(req.body.start) , limit : parseInt(req.body.length), sort : {email : sortingType}};
-    else if(req.body.order[0].column === '2')
-        params = {skip : parseInt(req.body.start) , limit : parseInt(req.body.length), sort : {city : sortingType}};
-    else if(req.body.order[0].column === '3')
-        params = {skip : parseInt(req.body.start) , limit : parseInt(req.body.length), sort : {status : sortingType}};
-    else if(req.body.order[0].column === '4')
-        params = {skip : parseInt(req.body.start) , limit : parseInt(req.body.length), sort : {role : sortingType}};
- 
+   
     users.find(query , {} , params , function (err , data)
         {
             if(err)
@@ -92,5 +86,34 @@ app.post('/showuser',auth,function(req, res) {
             }
         })
 });
+
+app.post('/deativateuserdata',auth,function(req,res) {
+    users.updateOne({ "_id" : req.body._id}, {$set: { "flag" : req.body.flag}},
+    function(err,result) {
+        if(err)
+          throw err
+        else
+            res.send("FLAG UPDATED SUCCESFULLY");
+    })
+})
+
+app.post('/reativateuserdata',auth,function(req,res) {
+    users.updateOne( { "_id" : req.body._id}, {$set: { "flag" : req.body.flag}},
+    function(err,result) {
+        if(err)
+          throw err
+        else
+            res.send("FLAG UPDATED SUCCESFULLY")
+    })
+})
+
+app.post('/updateuserdetails',auth,function(req,res) {
+    users.updateOne( { "email" : req.body.email}, {$set : req.body } , function(err,result) {
+          if(err)
+          throw err
+          else
+            res.send("DATA UPDATED SUCCESFULLY")
+    })
+})
 
 module.exports = app;
