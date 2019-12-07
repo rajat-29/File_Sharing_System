@@ -19,6 +19,10 @@ user_submit.addEventListener("click", function() {
 		{
 			alert("Email or Password Doesn't Match")
 		}
+		else if(data == 'not exits')
+		{
+			alert('Email Not Exists');
+		}
 		else
 		{
 			window.location = data;

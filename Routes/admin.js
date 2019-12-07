@@ -1,6 +1,8 @@
 let express = require('express');
 var app = require('express').Router();
 let path = require('path');
+const bcrypt = require('bcrypt');
+let saltRounds = 10
 
 app.use(express.static(path.join(__dirname,'../public')));
 
@@ -12,14 +14,19 @@ app.get('/addUser',auth, function(req,res) {
 	res.render('addUser',{data : req.session});
 })
 
-app.post('/addnewuser',auth, function (req, res) {    
-    users.create(req.body,function(error,res)
-    {
-        if(error)
-        throw error;
-        else{}
-     })       
-    res.send("data saved");
+app.post('/addnewuser',auth,function (req, res) {    
+  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+    if(!err) {
+      req.body.password = hash;
+      users.create(req.body,function(error,res)
+        {
+          if(error)
+          throw error;
+        })         
+    }
+    else {}
+  }) 
+  res.send("data saved");
 })
 
 app.get('/userList',auth,function(req,res){  
