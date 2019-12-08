@@ -15,9 +15,7 @@
                 Cq
         </a>
         </li>
-
-
-        <% if(data.role == "Admin"){ %>       
+     
            <li class="list" id="sidebar-home">
             <a onclick="dashboard()">
                 <span class="list-span">
@@ -25,8 +23,7 @@
                 </span>
                 Home
             </a>
-           </li>
-        <% } %>   
+           </li> 
 
         <% if(data.role == "Admin"){ %>         
             <li class="list" id="sidebar-adduser">
@@ -57,6 +54,17 @@
                     <i class="fas fa-toggle-off" id="icon"></i>
                 </span>
                 Switch As User
+              </a>
+           </li>
+        <% } %>
+
+        <% if(data.role == "User"){ %>         
+            <li class="list">
+              <a onclick="uploadFile()">
+                <span class="list-span">
+                    <i class="fas fa-upload" id="icon"></i>
+                </span>
+                Send File
               </a>
            </li>
         <% } %>

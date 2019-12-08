@@ -23,12 +23,8 @@ app.post('/checkLogin',function (req, res)
           res.send("not exits");
         }
         else {
-          if(result.flag == 0)
-          {
-           res.send("false");
-          }
-          else 
-          {
+         
+          
            bcrypt.compare(req.body.password,result.password,function(err,resi) {
             if(resi == true) {
                 req.session.isLogin = 1;
@@ -44,11 +40,9 @@ app.post('/checkLogin',function (req, res)
                 var re = req.session.redirectUrl || '/login/home';
                 res.send(re);
             }
-            else {
+            else 
               res.send("false")
-            }
           }) 
-          }
         }
       })     
 })

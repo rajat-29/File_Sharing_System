@@ -26,6 +26,11 @@ function openuserlist()
     window.location = '/admin/userList';
 }
 
+function uploadFile()
+{
+    window.location = '/user/uploadFile';
+}
+
 function changepassword()
 {
     window.location = "/login/changePassword";

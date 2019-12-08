@@ -17,8 +17,7 @@ var storage = multer.diskStorage({
       cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
-      var photoname = Date.now()+ file.fieldname+'.'+file.originalname.split('.')[1].toLowerCase()
-      req.session.data.photoname = '../' + photoname
+      var photoname =file.fieldname + '-' + Date.now()
       cb(null, photoname)
     }
 })
