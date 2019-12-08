@@ -26,8 +26,7 @@ app.get('/uploadFile',auth, function(req,res) {
 
 app.post('/uploadmultiple',upload.array('myFiles', 12), function(req, res) {
    const files = req.files
-   if(files.length == 0)
-   {
+   if(files.length == 0) {
    	res.send('false');
    }
    for(var i=0;i<files.length;i++)
@@ -49,5 +48,67 @@ app.post('/uploadmultiple',upload.array('myFiles', 12), function(req, res) {
    }
    res.send('true');
  });
+
+app.get('/sendFileRecords',auth, function(req,res) {
+	res.render('sendFileRecords',{data : req.session});
+})
+
+
+app.post('/showSendFiles',auth,function(req, res) {
+    let query = {};
+    let params = {};
+   
+   query = {from: req.session.email};
+   
+    if(req.body.search.value)
+    {
+        query["$or"]= [{
+            "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }, {
+            "to":{ '$regex' : req.body.search.value, '$options' : 'i' }
+        },{
+            "message": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "type":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "entryDate": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }]
+    }
+    let sortingType;
+    if(req.body.order[0].dir === 'asc')
+        sortingType = 1;
+    else
+        sortingType = -1;
+
+    
+  
+    fileses.find(query , {} , params , function (err , data)
+        {
+            if(err)
+                console.log(err);
+            else
+            {
+                fileses.countDocuments(query, function(err , filteredCount)
+                {
+                    if(err)
+                        console.log(err);
+                    else
+                    {
+                        fileses.countDocuments(function (err, totalCount)
+                        {
+                            if(err)
+                                console.log(err);
+                            else
+                                res.send({"recordsTotal": totalCount,
+                                    "recordsFiltered": filteredCount, data});
+                        })
+                    }
+                });
+            }
+        })
+});
+
 
 module.exports = app;

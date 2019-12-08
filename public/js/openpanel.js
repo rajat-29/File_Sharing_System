@@ -31,6 +31,11 @@ function uploadFile()
     window.location = '/user/uploadFile';
 }
 
+function sendFileRecords()
+{
+    window.location = '/user/sendFileRecords';
+}
+
 function changepassword()
 {
     window.location = "/login/changePassword";
