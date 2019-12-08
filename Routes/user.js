@@ -2,8 +2,10 @@ let express = require('express');
 var app = require('express').Router();
 let path = require('path');
 var multer=require('multer');
+var fs = require('fs');
 
 app.use(express.static(path.join(__dirname,'../public')));
+app.use(express.static(path.join(__dirname,'../public/uploads')));
 
 var mongoose = require('mongoose')
 var auth=require('../MiddleWares/auth');
@@ -14,7 +16,7 @@ var storage = multer.diskStorage({
       cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
-      var photoname =file.originalname + '-' + Date.now()
+      var photoname =file.originalname;
       cb(null, photoname)
     }
 })
@@ -59,7 +61,7 @@ app.post('/showSendFiles',auth,function(req, res) {
     let params = {};
    
    query = {from: req.session.email};
-   
+
     if(req.body.search.value)
     {
         query["$or"]= [{
@@ -81,8 +83,6 @@ app.post('/showSendFiles',auth,function(req, res) {
         sortingType = 1;
     else
         sortingType = -1;
-
-    
   
     fileses.find(query , {} , params , function (err , data)
         {
@@ -110,5 +110,31 @@ app.post('/showSendFiles',auth,function(req, res) {
         })
 });
 
+app.post('/deleteSendFiles',auth,function(req,res) {
+
+     fileses.findOne({"_id" : req.body._id} ,function (err , data) 
+     {
+     	fileses.deleteOne({ "_id" : req.body._id}, 
+	    function(err,result) {
+	        if(err)
+	          throw err
+	        else
+	        {
+	        	var filePath = '../public/uploads/' + data.fileName;
+	        	console.log(filePath)
+
+				fs.unlinkSync(path.join(__dirname, filePath));
+
+	            res.send("file deleted");
+	        }
+	    })
+     });
+})
+
+
+app.get('/downloadSendFiles/:pro',function(req,res) {
+	var filePath = '../public/uploads/' + req.params.pro.toString();
+	res.download(path.join(__dirname, filePath));
+})
 
 module.exports = app;

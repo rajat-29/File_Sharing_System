@@ -44,4 +44,12 @@ app.use('/login',require('./Routes/login'));
 app.use('/admin',require('./Routes/admin'));
 app.use('/user',require('./Routes/user'));
 
+app.get('/download', function (req,res) {
+	var filePath = __dirname + '/Routes/'; // Or format the path using the `id` rest param
+    var fileName = "/a.pdf"; // The default name the browser will use
+    console.log(filePath)
+
+    res.download(path.join(__dirname, "/public/a.pdf"));
+})
+
 app.listen(port,()=>{console.log("Running on port "+port);});
