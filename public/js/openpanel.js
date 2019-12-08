@@ -36,6 +36,11 @@ function sendFileRecords()
     window.location = '/user/sendFileRecords';
 }
 
+function recentFiles()
+{
+    window.location = "/user/recentFiles";
+}
+
 function changepassword()
 {
     window.location = "/login/changePassword";

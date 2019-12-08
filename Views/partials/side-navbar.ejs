@@ -79,6 +79,17 @@
               </a>
            </li>
         <% } %>
+
+        <% if(data.role == "User"){ %>         
+            <li class="list">
+              <a onclick="recentFiles()">
+                <span class="list-span">
+                    <i class="fas fa-file" id="icon"></i>
+                </span>
+                Send File
+              </a>
+           </li>
+        <% } %>
       
              <li class="list" id="sidebar-changePassword">
                <a onclick="changepassword()">
