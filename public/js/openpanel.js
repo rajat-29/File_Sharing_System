@@ -41,6 +41,11 @@ function recentFiles()
     window.location = "/user/recentFiles";
 }
 
+function receivedFiles()
+{
+    window.location = "/user/receivedFiles";
+}
+
 function changepassword()
 {
     window.location = "/login/changePassword";

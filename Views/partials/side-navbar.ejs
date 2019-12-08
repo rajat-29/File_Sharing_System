@@ -75,18 +75,30 @@
                 <span class="list-span">
                     <i class="fas fa-paper-plane" id="icon"></i>
                 </span>
-                Send File
+                Send Files Record
               </a>
            </li>
         <% } %>
 
         <% if(data.role == "User"){ %>         
             <li class="list">
-              <a onclick="recentFiles()">
+               <a onclick="recentFiles()">  
+              
                 <span class="list-span">
                     <i class="fas fa-file" id="icon"></i>
                 </span>
-                Send File
+                Recent Files
+              </a>
+           </li>
+        <% } %>
+
+        <% if(data.role == "User"){ %>         
+            <li class="list">
+             <a onclick="receivedFiles()">
+                <span class="list-span">
+                    <i class="fas fa-copy" id="icon"></i>
+                </span>
+                Received Files
               </a>
            </li>
         <% } %>
