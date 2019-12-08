@@ -189,6 +189,62 @@ app.post('/recentFiles',auth,function(req, res) {
         })
 });
 
+app.get('/receivedFiles',auth, function(req,res) {
+	res.render('receivedFiles',{data : req.session});
+})
 
+app.post('/receivedFiles',auth,function(req, res) {
+    let query = {};
+    let params = {};
+   
+   query = {to: req.session.email};
+
+    if(req.body.search.value)
+    {
+        query["$or"]= [{
+            "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }, {
+            "to":{ '$regex' : req.body.search.value, '$options' : 'i' }
+        },{
+            "message": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "type":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "entryDate": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }]
+    }
+    let sortingType;
+    if(req.body.order[0].dir === 'asc')
+        sortingType = 1;
+    else
+        sortingType = -1;
+  
+    fileses.find(query , {} , params , function (err , data)
+        {
+            if(err)
+                console.log(err);
+            else
+            {
+                fileses.countDocuments(query, function(err , filteredCount)
+                {
+                    if(err)
+                        console.log(err);
+                    else
+                    {
+                        fileses.countDocuments(function (err, totalCount)
+                        {
+                            if(err)
+                                console.log(err);
+                            else
+                                res.send({"recordsTotal": totalCount,
+                                    "recordsFiltered": filteredCount, data});
+                        })
+                    }
+                });
+            }
+        })
+});
 
 module.exports = app;
