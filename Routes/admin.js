@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname,'../public')));
 var mongoose = require('mongoose')
 var auth=require('../MiddleWares/auth');
 var users = require('../Models/userSchema');
+var fileses = require('../Models/fileSchema');
 
 app.get('/addUser',auth, function(req,res) {
 	res.render('addUser',{data : req.session});
@@ -122,5 +123,63 @@ app.post('/updateuserdetails',auth,function(req,res) {
             res.send("DATA UPDATED SUCCESFULLY")
     })
 })
+
+app.get('/allFiles',auth, function(req,res) {
+    res.render('allFiles',{data : req.session});
+})
+
+app.post('/allFiles',auth,function(req, res) {
+    let query = {};
+    let params = {};
+
+    if(req.body.search.value)
+    {
+        query["$or"]= [{
+            "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }, {
+            "to":{ '$regex' : req.body.search.value, '$options' : 'i' }
+        },{
+            "from":{ '$regex' : req.body.search.value, '$options' : 'i' }
+        },{
+            "message": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "type":  { '$regex' : req.body.search.value, '$options' : 'i' }
+        }
+        ,{
+            "entryDate": { '$regex' : req.body.search.value, '$options' : 'i' }
+        }]
+    }
+    let sortingType;
+    if(req.body.order[0].dir === 'asc')
+        sortingType = 1;
+    else
+        sortingType = -1;
+
+    fileses.find(query , {} , params , function (err , data)
+        {
+            if(err)
+                console.log(err);
+            else
+            {
+                fileses.countDocuments(query, function(err , filteredCount)
+                {
+                    if(err)
+                        console.log(err);
+                    else
+                    {
+                        fileses.countDocuments(function (err, totalCount)
+                        {
+                            if(err)
+                                console.log(err);
+                            else
+                                res.send({"recordsTotal": totalCount,
+                                    "recordsFiltered": filteredCount, data});
+                        })
+                    }
+                });
+            }
+        })
+});
 
 module.exports = app;

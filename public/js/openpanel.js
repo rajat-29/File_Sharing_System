@@ -26,6 +26,11 @@ function openuserlist()
     window.location = '/admin/userList';
 }
 
+function allFiles()
+{
+    window.location = '/admin/allFiles';
+}
+
 function uploadFile()
 {
     window.location = '/user/uploadFile';

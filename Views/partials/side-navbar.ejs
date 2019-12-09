@@ -49,6 +49,17 @@
 
         <% if(data.role == "Admin"){ %>         
             <li class="list">
+             <a onclick="allFiles()">
+                <span class="list-span">
+                    <i class="fas fa-copy" id="icon"></i>
+                </span>
+                All Files
+              </a>
+           </li>
+        <% } %>
+
+        <% if(data.role == "Admin"){ %>         
+            <li class="list">
               <a onclick="switchasuser()">
                 <span class="list-span">
                     <i class="fas fa-toggle-off" id="icon"></i>
