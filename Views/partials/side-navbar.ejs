@@ -69,7 +69,19 @@
            </li>
         <% } %>
 
-        <% if(data.role == "User"){ %>         
+        <% if(data.role == "superAdmin"){ %>         
+            <li class="list">
+              <a onclick="switchasuser()">
+                <span class="list-span">
+                    <i class="fas fa-toggle-off" id="icon"></i>
+                </span>
+                Switch As Admin
+              </a>
+           </li>
+        <% } %>
+
+
+        <% if(data.role == "User" || data.role == "superAdmin"){ %>         
             <li class="list">
               <a onclick="uploadFile()">
                 <span class="list-span">
@@ -80,7 +92,7 @@
            </li>
         <% } %>
 
-        <% if(data.role == "User"){ %>         
+        <% if(data.role == "User" || data.role == "superAdmin"){ %>         
             <li class="list">
               <a onclick="sendFileRecords()">
                 <span class="list-span">
@@ -91,7 +103,7 @@
            </li>
         <% } %>
 
-        <% if(data.role == "User"){ %>         
+        <% if(data.role == "User" || data.role == "superAdmin"){ %>         
             <li class="list">
                <a onclick="recentFiles()">  
               
@@ -103,7 +115,7 @@
            </li>
         <% } %>
 
-        <% if(data.role == "User"){ %>         
+        <% if(data.role == "User" || data.role == "superAdmin"){ %>         
             <li class="list">
              <a onclick="receivedFiles()">
                 <span class="list-span">
