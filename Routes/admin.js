@@ -182,4 +182,18 @@ app.post('/allFiles',auth,function(req, res) {
         })
 });
 
+app.get('/switchasuser',auth,function(req,res) {
+  users.updateOne( { "email" : req.session.email}, {$set: { "role" : "superAdmin"}} ,
+         function(err,result)
+         {
+          if(err)
+          throw err
+          else
+          {
+           req.session.role = "superAdmin"
+            res.render('switchasUser', {data: req.session.data});
+          }
+        })
+})
+
 module.exports = app;

@@ -31,6 +31,30 @@ function allFiles()
     window.location = '/admin/allFiles';
 }
 
+function switchasuser()
+{
+      $.confirm({
+    title: 'Switch as User',
+    content: 'Do you really want switch state...',
+    draggable: true,
+    buttons: {
+        Yes: {
+            btnClass: 'btn-success any-other-class',
+            action: function () {
+            btnClass: 'btn-red any-other-class'
+            window.location = "/admin/switchasuser";
+        }
+    },
+        No: {
+            btnClass: 'btn-danger any-other-class',
+             action: function () {
+            
+        }
+    },
+    }
+    });
+}
+
 function uploadFile()
 {
     window.location = '/user/uploadFile';
