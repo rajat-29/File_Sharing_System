@@ -194,4 +194,16 @@ app.get('/switchasuser',auth,function(req,res) {
     })
 })
 
+app.get('/switchasadmin',auth,function(req,res) {
+  users.updateOne( { "email" : req.session.email}, {$set: { "role" : "Admin"}} ,
+    function(err,result){
+          if(err)
+          throw err
+          else {
+           req.session.role = "Admin"
+            res.render('switchasAdmin', {data: req.session.data});
+          }
+    })
+})
+
 module.exports = app;
