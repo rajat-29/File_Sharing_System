@@ -23,9 +23,11 @@
                     <%=data.name%>
                 </span>
 
+            <% if(data.role == "superAdmin"){ %>   
                 <span class="label label-warning" id="sadmin" style="float:right;">
                     superadmin
                 </span>
+            <% } %>    
 
             </div>
         </div>

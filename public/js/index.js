@@ -1,6 +1,7 @@
 var user_name = document.getElementById('user_name');
 var user_pass = document.getElementById('user_pass');
 var user_submit = document.getElementById('user_submit');
+var signUp = document.getElementById('signUp');
 
 user_submit.addEventListener("click", function() {
 	if(user_name.value == '' || user_pass == '')
@@ -28,4 +29,8 @@ user_submit.addEventListener("click", function() {
 			window.location = data;
 		}
 	})
+})
+
+signUp.addEventListener("click", function() {
+	window.location = "/login/signUp";
 })

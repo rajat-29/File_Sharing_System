@@ -78,4 +78,8 @@ app.get('/logout', function(req,res) {
     res.render('index');
 })
 
+app.get('/signUp',function(req,res) {
+  res.render('signUp');
+})
+
 module.exports = app;

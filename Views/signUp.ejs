@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>Sign Up</title>
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+        <link href="css/sidebar.css" rel="stylesheet" type = "text/css">
+        <link href="css/header.css" rel="stylesheet" type = "text/css">
+        <link href = "css/style.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" >
+        <!-- BOOTSTRAP 3-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/openpanel.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    </head>   
+<body class="body">
+    <div class="added a"></div>
+        <div id="viewscreen" >
+            <div id="rightview" >
+                <div class="container-fluid div-min-width" style="padding:0;">
+                    <div class="row">
+                        <div class="col-lg-12 parentDiv" style="padding:0">
+                            <div class="container">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-6 mainDiv">
+                                    <div class="alert alert-info" id="email_info">
+                                    	<center id="display_email"></center>
+                                    </div>
+                                    <h1 class="heading">Sign Up</h1>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="user_name" placeholder="Name" autocomplete="off" required><br>
+                                        </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="user_email" placeholder="Email" onchange="email_avail()" required><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="user_pass" placeholder="User Password" required><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" id="user_phone" pattern="\d*" placeholder="Phone" maxlength="10"><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="user_city" placeholder="City" required><br>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Role</label>
+                                                <br>
+                                                <select data-style="btn-info" class="form-control" id="user_role">
+                                                    <optgroup label="Select User Role">
+                                                        <option value="User">User</option>
+                                                        <option value="Admin">Admin</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <br>
+                                                <select data-style="btn-info" class="form-control" id="user_gender">
+                                                    <optgroup label="Select Gender">
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Add User" class="btn btn-success" id="submit-btn">
+                                                <input value="Cancel" class="btn btn-danger" id="cancel-btn">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</html>
+<script type="text/javascript" src="js/addUser.js"></script>
