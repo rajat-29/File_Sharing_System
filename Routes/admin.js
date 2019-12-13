@@ -15,7 +15,7 @@ app.get('/addUser',auth, function(req,res) {
 	res.render('addUser',{data : req.session});
 })
 
-app.post('/addnewuser',auth,function (req, res) {    
+app.post('/addnewuser',function (req, res) {    
   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
     if(!err) {
       req.body.password = hash;
