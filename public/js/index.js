@@ -2,6 +2,7 @@ var user_name = document.getElementById('user_name');
 var user_pass = document.getElementById('user_pass');
 var user_submit = document.getElementById('user_submit');
 var signUp = document.getElementById('signUp');
+var sendFile = document.getElementById('sendFile');
 
 user_submit.addEventListener("click", function() {
 	if(user_name.value == '' || user_pass == '')
@@ -33,4 +34,8 @@ user_submit.addEventListener("click", function() {
 
 signUp.addEventListener("click", function() {
 	window.location = "/login/signUp";
+})
+
+sendFile.addEventListener("click", function() {
+	window.location = "/login/sendFile";
 })

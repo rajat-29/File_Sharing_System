@@ -20,9 +20,7 @@
     </head>   
 <body class="body">
     <div class="added a"></div>
-	<% include partials/top-bar.ejs %>
         <div id="viewscreen" >
-        <% include partials/side-navbar.ejs %>
             <div id="rightview" >
                 <div class="container-fluid div-min-width" style="padding:0;">
                     <div class="row">
@@ -38,7 +36,11 @@
                                     <form class="uploadImage" action="/user/uploadmultiple" enctype="multipart/form-data" method="POST">
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="title" placeholder="Enter Email" autocomplete="off" required><br>
+                                            <input type="text" class="form-control" id="title" placeholder="Enter From" autocomplete="off" required><br>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="title" placeholder="Enter To" autocomplete="off" required><br>
                                         </div>
 
                                         <div class="form-group">

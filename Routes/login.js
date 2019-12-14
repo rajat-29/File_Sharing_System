@@ -82,6 +82,10 @@ app.get('/signUp',function(req,res) {
   res.render('signUp');
 })
 
+app.get('/sendFile',function(req,res) {
+  res.render('sendFileWithoutLogin');
+})
+
 app.get('/index',function(req,res) {
   res.render('index');
 })
