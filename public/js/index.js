@@ -27,7 +27,7 @@ user_submit.addEventListener("click", function() {
 		}
 		else if(data == 'deactivate')
 		{
-			alert('User Deactivate');
+			window.location = "/login/404";
 		}
 		else
 		{

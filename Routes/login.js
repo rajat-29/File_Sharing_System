@@ -94,4 +94,8 @@ app.get('/index',function(req,res) {
   res.render('index');
 })
 
+app.get('/404',function(req,res) {
+  res.render('404');
+})
+
 module.exports = app;
