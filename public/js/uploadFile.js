@@ -1,5 +1,6 @@
 var adding = document.getElementById('submit-btn');
 var cancel_addUser = document.getElementById('cancel-btn');
+var flag = 0;
 
  $('.uploadImage').submit(function(e){
      
@@ -10,6 +11,14 @@ var cancel_addUser = document.getElementById('cancel-btn');
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
     today = + dd + '-' + getMonths(mm) + '-' + yyyy; 
+
+    console.log(flag)
+
+    if(flag == 1)
+    {
+      alert("Email is not Correct");
+      return false;
+    }
      
     $(this).ajaxSubmit({
        data: {title: title,entryDate: today,message: message},
@@ -37,4 +46,21 @@ cancel_addUser.addEventListener("click", function(){
 function getMonths(mno) {
     var month = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
     return month[mno-1];
+}
+
+function email_avail()
+{  
+  var obj1 = new Object();
+  obj1.email = $('#title').val();
+  
+  var request = new XMLHttpRequest();
+    request.open('POST',"/admin/checkemail");
+    request.setRequestHeader("Content-Type","application/json");
+    request.send(JSON.stringify(obj1));
+    request.addEventListener("load",function() {
+      var data = request.responseText;
+      if(data === 'false') {
+        flag = 1;
+      }
+    });  
 }

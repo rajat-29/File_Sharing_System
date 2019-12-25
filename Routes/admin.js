@@ -30,6 +30,18 @@ app.post('/addnewuser',function (req, res) {
   res.send("data saved");
 })
 
+app.post('/checkemail',auth,function (req, res) {
+    users.findOne({email: req.body.email}, function(error,result)
+      {
+        if(error)
+        throw error;
+      if(!result)
+        res.send("false");
+      else 
+          res.send("true");
+      })
+})
+
 app.get('/userList',auth,function(req,res){  
       res.render('userlist', {data: req.session});
 }) 

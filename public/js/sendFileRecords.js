@@ -33,7 +33,7 @@ $(document).ready(function() {
             "targets": -1,
 
                 "render": function (data, type, row, meta) {  
-                  return '<center><span class="actionbut editbut" id="editbut" onclick=downloadFiles("'+row._id+'","'+encodeURIComponent(row.originalName)+'")><i class="fas fa-download"></i></span><span class="actionbut deactivatebut" id="deactivatebut" onclick=deleteFiles("'+row._id+'","'+row.originalName+'")><i class="fa fa-trash"></i></span></center>'
+                  return '<center><span class="actionbut editbut" id="editbut" onclick=downloadFiles("'+row._id+'","'+encodeURIComponent(row.originalName)+'")><i class="fas fa-download"></i></span><span class="actionbut deactivatebut" id="deactivatebut" onclick=deleteFiles("'+row._id+'","'+encodeURIComponent(row.originalName)+'")><i class="fa fa-trash"></i></span></center>'
 
                 }
         }],
