@@ -22,6 +22,10 @@ app.post('/checkLogin',function (req, res)
         if(!result) {
           res.send("not exits");
         }
+        else if(result.flag  == '0')
+        {
+          res.send("deactivate");
+        }
         else {
          
           

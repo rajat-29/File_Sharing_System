@@ -41,7 +41,7 @@ adding.addEventListener("click", function() {
 	obj.role = user_role.value;
 	obj.status = 'Pending';
 	obj.photoname = '/default.png'
-	obj.flag = 0;
+	obj.flag = 1;
 
    	var request = new XMLHttpRequest();
     request.open('POST',"/admin/addnewuser");

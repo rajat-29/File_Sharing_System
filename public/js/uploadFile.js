@@ -18,6 +18,7 @@ var cancel_addUser = document.getElementById('cancel-btn');
 	        if(response == 'false')
 	        {
 	         	alert('Files are Not Uploaded');
+            location.reload();
 	        } 
 	        else
 	        {

@@ -25,6 +25,10 @@ user_submit.addEventListener("click", function() {
 		{
 			alert('Email Not Exists');
 		}
+		else if(data == 'deactivate')
+		{
+			alert('User Deactivate');
+		}
 		else
 		{
 			window.location = data;

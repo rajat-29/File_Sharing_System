@@ -29,7 +29,6 @@ adding.addEventListener("click", function() {
 		return;
 	}
 
-console.log('l')	
 	var obj = new Object();
 	obj.name = user_name.value;
 	obj.email = user_email.value;
@@ -41,7 +40,7 @@ console.log('l')
 	obj.role = 'User';
 	obj.status = 'Pending';
 	obj.photoname = '/default.png'
-	obj.flag = 0;
+	obj.flag = 1;
 
    	var request = new XMLHttpRequest();
     request.open('POST',"/admin/addnewuser");
