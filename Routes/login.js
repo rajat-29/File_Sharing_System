@@ -37,6 +37,7 @@ app.post('/checkLogin',function (req, res)
                 req.session.password = result.password;
                 req.session.phone = result.phone;       
                 req.session.city = result.city;       
+                req.session.dob = result.dob;
                 req.session.gender = result.gender;       
                 req.session.role = result.role;       
                 req.session.status = result.status;       
@@ -98,8 +99,8 @@ app.get('/404',function(req,res) {
   res.render('404');
 })
 
-module.exports = app;
-
 app.get('/editProfile',function(req,res) {
   res.render('ProfileDetails',{data : req.session});
 })
+
+module.exports = app;
