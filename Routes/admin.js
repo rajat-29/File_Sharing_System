@@ -30,7 +30,7 @@ app.post('/addnewuser',function (req, res) {
   res.send("data saved");
 })
 
-app.post('/checkemail',auth,function (req, res) {
+app.post('/checkemail',function (req, res) {
     users.findOne({email: req.body.email}, function(error,result)
       {
         if(error)
