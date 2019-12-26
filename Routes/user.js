@@ -11,20 +11,18 @@ var mongoose = require('mongoose')
 var auth=require('../MiddleWares/auth');
 var fileses = require('../Models/fileSchema');
 
-const FILE_PATH = './public/uploads/';
+
 
 function sanitizeFile(file, cb) {
-    // Define the allowed extension
-    let fileExts = ['png', 'jpg', 'jpeg', 'gif']
-    // Check allowed extensions
+
+    let fileExts = ['png', 'jpg', 'jpeg', 'gif', 'pdf']
     let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
 
     if(isAllowedExt){
-        return cb(null ,true) // no errors
+        return cb(null ,true) 
     }
     else{
-        // pass error msg to callback, which can be displaye in frontend
-        return cb(null, false, new Error('goes wrong on the mimetype'));
+       cb('Error: File type not allowed!')
     }
 }
 
@@ -38,49 +36,58 @@ var storage = multer.diskStorage({
     }
 })
 
- var upload = multer({ storage: storage ,
-    limits: {
-        fileSize: 1000000
-    },
+   
+  var upload = multer({ storage: storage ,
+
     fileFilter: function (req, file, cb) {
-        sanitizeFile(file, cb);     
+    sanitizeFile(file, cb);
+      
     }
-})
+}).array('myFiles')
+
 
 app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});
 })
 
-app.post('/uploadmultiple',upload.array('myFiles', 12), function(req, res, err) {
-    if(err)
-    {
-        res.send("format");
-    }
-    else
-    {
-        const files = req.files
-      if (req.files == undefined) {
-        res.send('false');
-       }
-       for(var i=0;i<files.length;i++)
-       {
-        var obj = new Object();
-        obj.to = req.body.title;
-        obj.from = req.session.email;
-        obj.message = req.body.message;
-        obj.fileName = files[i].filename;
-        obj.originalName = files[i].originalname;
-        obj.type = files[i].mimetype;
-        obj.entryDate = req.body.entryDate;
 
-        fileses.create(obj,function(error,res)
-        {
-            if(error)
-             throw error;
-        })
-       }
-        res.send('true');
-    }
+app.post('/uploadmultiple', function(req, res) {
+
+upload(req,res, (err) => {
+
+    if (err){ 
+        res.send("format")
+        }else{
+           const files = req.files
+              if(files.length == 0) {
+                res.send('false');
+               }
+               else
+               {
+                    for(var i=0;i<files.length;i++)
+                   {
+                    var obj = new Object();
+                    obj.to = req.body.title;
+                    obj.from = req.session.email;
+                    obj.message = req.body.message;
+                    obj.fileName = files[i].filename;
+                    obj.originalName = files[i].originalname;
+                    obj.type = files[i].mimetype;
+                    obj.entryDate = req.body.entryDate;
+
+                    fileses.create(obj,function(error,res)
+                    {
+                        if(error)
+                         throw error;
+                    })
+                   }
+                    res.send('true');
+               }
+               
+        }
+
+})
+
  });
 
 app.get('/sendFileRecords',auth, function(req,res) {
