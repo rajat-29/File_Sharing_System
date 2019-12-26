@@ -99,3 +99,7 @@ app.get('/404',function(req,res) {
 })
 
 module.exports = app;
+
+app.get('/editProfile',function(req,res) {
+  res.render('ProfileDetails',{data : req.session});
+})

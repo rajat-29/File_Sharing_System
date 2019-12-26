@@ -123,3 +123,8 @@ function openlogoutpage()
     }
     });
 }
+
+function editProfile()
+{
+    window.location = '/login/editProfile';
+}
