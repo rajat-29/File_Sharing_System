@@ -11,6 +11,23 @@ var mongoose = require('mongoose')
 var auth=require('../MiddleWares/auth');
 var fileses = require('../Models/fileSchema');
 
+const FILE_PATH = './public/uploads/';
+
+function sanitizeFile(file, cb) {
+    // Define the allowed extension
+    let fileExts = ['png', 'jpg', 'jpeg', 'gif']
+    // Check allowed extensions
+    let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
+
+    if(isAllowedExt){
+        return cb(null ,true) // no errors
+    }
+    else{
+        // pass error msg to callback, which can be displaye in frontend
+        return cb(null, false, new Error('goes wrong on the mimetype'));
+    }
+}
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/uploads/')
@@ -20,35 +37,50 @@ var storage = multer.diskStorage({
       cb(null, photoname)
     }
 })
-var upload = multer({ storage: storage })
+
+ var upload = multer({ storage: storage ,
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter: function (req, file, cb) {
+        sanitizeFile(file, cb);     
+    }
+})
 
 app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});
 })
 
-app.post('/uploadmultiple',upload.array('myFiles', 12), function(req, res) {
-   const files = req.files
-   if(files.length == 0) {
-   	res.send('false');
-   }
-   for(var i=0;i<files.length;i++)
-   {
-   	var obj = new Object();
-   	obj.to = req.body.title;
-   	obj.from = req.session.email;
-   	obj.message = req.body.message;
-   	obj.fileName = files[i].filename;
-   	obj.originalName = files[i].originalname;
-   	obj.type = files[i].mimetype;
-   	obj.entryDate = req.body.entryDate;
-
-   	fileses.create(obj,function(error,res)
+app.post('/uploadmultiple',upload.array('myFiles', 12), function(req, res, err) {
+    if(err)
     {
-        if(error)
-         throw error;
-    })
-   }
-   res.send('true');
+        res.send("format");
+    }
+    else
+    {
+        const files = req.files
+      if (req.files == undefined) {
+        res.send('false');
+       }
+       for(var i=0;i<files.length;i++)
+       {
+        var obj = new Object();
+        obj.to = req.body.title;
+        obj.from = req.session.email;
+        obj.message = req.body.message;
+        obj.fileName = files[i].filename;
+        obj.originalName = files[i].originalname;
+        obj.type = files[i].mimetype;
+        obj.entryDate = req.body.entryDate;
+
+        fileses.create(obj,function(error,res)
+        {
+            if(error)
+             throw error;
+        })
+       }
+        res.send('true');
+    }
  });
 
 app.get('/sendFileRecords',auth, function(req,res) {

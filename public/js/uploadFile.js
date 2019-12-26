@@ -29,6 +29,10 @@ var flag = 0;
 	         	alert('Files are Not Uploaded');
             location.reload();
 	        } 
+          else if(response == 'format')
+          {
+            alert("File Format is not correct")
+          }
 	        else
 	        {
 	         	alert('Files are Uploaded');
@@ -50,6 +54,7 @@ function getMonths(mno) {
 
 function email_avail()
 {  
+  flag = 0;
   var obj1 = new Object();
   obj1.email = $('#title').val();
   
