@@ -14,18 +14,51 @@ adding.addEventListener("click", function() {
 	if(user_name.value == '' || user_email.value == '' || user_phone.value == '' || user_city.value == '')
 	{
 		
-			alert("Field can't be Empty");
-			return false;
+		$.confirm({
+	    	title: 'Fields ?',
+	    	content: "Fields can't be Empty ",
+	    	draggable: true,
+	   		buttons: {
+	        OK: {
+	            btnClass: 'btn-danger any-other-class',
+	             action: function () {      
+	        	}
+	   		},
+	    	}
+			});
+		return false;
 	}
 	else if(ph.length<10 || ph.length>10)
 	{
-		alert('Phone No should be of length 10');
+		$.confirm({
+	    	title: 'Phone No ?',
+	    	content: "Phone No should be of length 10 ",
+	    	draggable: true,
+	   		buttons: {
+	        OK: {
+	            btnClass: 'btn-danger any-other-class',
+	             action: function () {      
+	        	}
+	   		},
+	    	}
+		});
 		return;
 	}
 
 	if(!ValidateEmail(user_email.value))
 	{
-		alert('Email format is not valid')
+		$.confirm({
+	    	title: 'Email format ?',
+	    	content: "Email format is not valid ",
+	    	draggable: true,
+	   		buttons: {
+	        OK: {
+	            btnClass: 'btn-danger any-other-class',
+	             action: function () {      
+	        	}
+	   		},
+	    	}
+		});
 		return;
 	}
 
@@ -47,8 +80,19 @@ adding.addEventListener("click", function() {
     request.setRequestHeader("Content-Type","application/json");
     request.send(JSON.stringify(obj))
     request.addEventListener("load",function() {
-        alert("You are Registered");
-        window.location = '/login/index';
+        $.confirm({
+	    	title: 'New User ?',
+	    	content: "You are Registered ",
+	    	draggable: true,
+	   		buttons: {
+	        OK: {
+	            btnClass: 'btn-danger any-other-class',
+	             action: function () {  
+	             window.location = '/login/index';
+	        	}
+	   		},
+	    	}
+		});
     });  
 })
 
