@@ -97,7 +97,18 @@ function backCheck(strings)
 submitbtn.addEventListener("click", function() {
 	if(oldpass.value == '' || newpass.value == '')
     {
-        alert("Field is Empty")
+        $.confirm({
+    	title: 'Password ?',
+    	content: "Fields are Empty So Enter Password",
+    	draggable: true,
+   		buttons: {
+        Ok: {
+            btnClass: 'btn-red any-other-class',
+             action: function () {      
+        	}
+   		},
+    	}
+		});
         return;
     }
 
@@ -113,13 +124,36 @@ submitbtn.addEventListener("click", function() {
 	    request.send(JSON.stringify(obj))
 	    request.onload = function ()
 	    {
-	    	alert(request.responseText);
-	    	location.reload();
+	    	$.confirm({
+	    	title: 'Password ?',
+	    	content: request.responseText,
+	    	draggable: true,
+	   		buttons: {
+	        Ok: {
+	            btnClass: 'btn-red any-other-class',
+	             action: function () { 
+	             location.reload();     
+	        	}
+	   		},
+	    	}
+			});
 	    }  
     }
     else
     {
-    	alert('All Parameters are not fulfilled');
+    	$.confirm({
+	    	title: 'Password ?',
+	    	content: 'All Parameters are not fulfilled',
+	    	draggable: true,
+	   		buttons: {
+	        Ok: {
+	            btnClass: 'btn-red any-other-class',
+	             action: function () { 
+	             
+	        	}
+	   		},
+	    	}
+			});
     	return;
     }
 })

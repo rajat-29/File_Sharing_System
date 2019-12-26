@@ -16,7 +16,7 @@ var flag = 0;
 
     if(flag == 1)
     {
-      alert("Email is not Correct");
+      alert('Email not  Correct')
       return false;
     }
      
