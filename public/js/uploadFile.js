@@ -12,8 +12,6 @@ var flag = 0;
     var yyyy = today.getFullYear();
     today = + dd + '-' + getMonths(mm) + '-' + yyyy; 
 
-    console.log(flag)
-
     if(flag == 1)
     {
       alert('Email not  Correct')

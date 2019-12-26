@@ -50,11 +50,8 @@ app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});
 })
 
-
 app.post('/uploadmultiple', function(req, res) {
-
 upload(req,res, (err) => {
-
     if (err){ 
         res.send("format")
         }else{
@@ -82,13 +79,44 @@ upload(req,res, (err) => {
                     })
                    }
                     res.send('true');
-               }
-               
+               }     
         }
-
 })
+});
 
- });
+app.post('/uploadmultipleWithoutLogin', function(req, res) {
+upload(req,res, (err) => {
+    if (err){ 
+        res.send("format")
+        }else{
+           const files = req.files
+              if(files.length == 0) {
+                res.send('false');
+               }
+               else
+               {
+                    for(var i=0;i<files.length;i++)
+                   {
+                    var obj = new Object();
+                    obj.to = req.body.emailTo;
+                    obj.from = req.body.emailFrom;
+                    obj.message = req.body.message;
+                    obj.fileName = files[i].filename;
+                    obj.originalName = files[i].originalname;
+                    obj.type = files[i].mimetype;
+                    obj.entryDate = req.body.entryDate;
+
+                    fileses.create(obj,function(error,res)
+                    {
+                        if(error)
+                         throw error;
+                    })
+                   }
+                    res.send('true');
+               }     
+        }
+})
+});
 
 app.get('/sendFileRecords',auth, function(req,res) {
 	res.render('sendFileRecords',{data : req.session});
