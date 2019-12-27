@@ -17,7 +17,7 @@ app.get('/sendFileRecords',auth, function(req,res) {
     res.render('sendFileRecords',{data : req.session});
 })
 
-app.get('/downloadSendFiles/:pro',function(req,res) {
+app.get('/downloadSendFiles/:pro',auth,function(req,res) {
     var filePath = '../../public/uploads/' + req.params.pro.toString();
     res.download(path.join(__dirname, filePath));
 })

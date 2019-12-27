@@ -5,17 +5,19 @@ let path = require('path');
 app.use(express.static(path.join(__dirname,'../../public')));
 app.use(express.static(path.join(__dirname,'../../public/uploads')));
 
+var auth=require('../../MiddleWares/auth');
+
 let loginController = require('../../Controllers/login');
 
-app.get('/home',function(req,res) {
+app.get('/home',auth,function(req,res) {
 	res.render('dashboard',{data : req.session});
 })
 
-app.get('/changePassword',function(req,res) {
+app.get('/changePassword',auth,function(req,res) {
 	res.render('changePassword',{data : req.session});
 })
 
-app.get('/logout', function(req,res) {
+app.get('/logout', auth,function(req,res) {
     req.session.isLogin = 0;
     req.session.destroy();
     res.render('index');
@@ -37,11 +39,11 @@ app.get('/404',function(req,res) {
   res.render('404');
 })
 
-app.get('/editProfile',function(req,res) {
+app.get('/editProfile',auth,function(req,res) {
   res.render('ProfileDetails',{data : req.session});
 })
 
-app.get('/newProfileUpdate',function(req,res) {
+app.get('/newProfileUpdate',auth,function(req,res) {
   res.render('newProfileUpdate',{data : req.session});
 })
 
