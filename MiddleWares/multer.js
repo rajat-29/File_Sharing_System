@@ -1,14 +1,14 @@
 var multer=require('multer');
 
 function sanitizeFile(file, cb) {
-    let fileExts = ['png', 'jpg', 'jpeg', 'gif']
+    let fileExts = ['png', 'jpg', 'jpeg', 'gif', 'pdf']
     let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
-    let isAllowedMimeType = file.mimetype.startsWith("image/")
-    if(isAllowedExt && isAllowedMimeType){
-        return cb(null ,true) // no errors
+
+    if(isAllowedExt){
+        return cb(null ,true) 
     }
     else{
-        cb('Error: File type not allowed!')
+       cb('Error: File type not allowed!')
     }
 }
 
@@ -17,16 +17,19 @@ var storage = multer.diskStorage({
       cb(null, './public/uploads/')
     },
     filename: function (req, file, cb) {
-      var photoname =file.fieldname + '-' + Date.now()
+      var photoname =file.originalname;
       cb(null, photoname)
     }
 })
 
 exports.upload = multer({ storage: storage ,
-    limits: {
-        fileSize: 1000000
-    },
     fileFilter: function (req, file, cb) {
-        sanitizeFile(file, cb);
+    sanitizeFile(file, cb);   
     }
-}).single('myFile');
+}).array('myFiles')
+
+exports.uploadUserImage = multer({ storage: storage ,
+    fileFilter: function (req, file, cb) {
+    sanitizeFile(file, cb);   
+    }
+}).single('userFile')

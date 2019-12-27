@@ -8,51 +8,20 @@ app.use(express.static(path.join(__dirname,'../public')));
 app.use(express.static(path.join(__dirname,'../public/uploads')));
 
 var mongoose = require('mongoose')
+
 var auth=require('../MiddleWares/auth');
+var multer=require('../MiddleWares/multer');
+
 var fileses = require('../Models/fileSchema');
-
-function sanitizeFile(file, cb) {
-    let fileExts = ['png', 'jpg', 'jpeg', 'gif']
-    let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
-
-    if(isAllowedExt){
-        return cb(null ,true) 
-    }
-    else{
-       cb('Error: File type not allowed!')
-    }
-}
-
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './public/uploads/')
-    },
-    filename: function (req, file, cb) {
-      var photoname =file.originalname;
-      cb(null, photoname)
-    }
-})
- 
-var upload = multer({ storage: storage ,
-    fileFilter: function (req, file, cb) {
-    sanitizeFile(file, cb);   
-    }
-}).array('myFiles')
-
-var uploadUserImage = multer({ storage: storage ,
-    fileFilter: function (req, file, cb) {
-    sanitizeFile(file, cb);   
-    }
-}).single('userFile')
 
 app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});
 })
 
 app.post('/uploadmultiple', function(req, res) {
-upload(req,res, (err) => {
-    if (err){ 
-        res.send("format")
+    multer.upload(req,res, (err) => {
+        if (err){ 
+            res.send("format")
         }else{
            const files = req.files
               if(files.length == 0) {
@@ -79,12 +48,12 @@ upload(req,res, (err) => {
                    }
                     res.send('true');
                }     
-        }
+            }
     })
 });
 
 app.post('/Userupload', function(req, res) {
-uploadUserImage(req,res, (err) => {
+    multer.uploadUserImage(req,res, (err) => {
     if (err){ 
         res.send("format")
         }else{
@@ -101,7 +70,7 @@ uploadUserImage(req,res, (err) => {
 });
 
 app.post('/uploadmultipleWithoutLogin', function(req, res) {
-upload(req,res, (err) => {
+    multer.upload(req,res, (err) => {
     if (err){ 
         res.send("format")
         }else{
@@ -207,7 +176,6 @@ app.post('/deleteSendFiles',auth,function(req,res) {
 	    })
      });
 })
-
 
 app.get('/downloadSendFiles/:pro',function(req,res) {
 	var filePath = '../public/uploads/' + req.params.pro.toString();
