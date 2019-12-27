@@ -10,7 +10,7 @@ var mongoose = require('mongoose')
 var users = require('../Models/userSchema');
 
 app.post('/checkLogin',function (req, res)   
-  {
+{
       req.session.isLogin = 0;
       var username = req.body.email;
       var pasword = req.body.password;
@@ -27,8 +27,6 @@ app.post('/checkLogin',function (req, res)
           res.send("deactivate");
         }
         else {
-         
-          
            bcrypt.compare(req.body.password,result.password,function(err,resi) {
             if(resi == true) {
                 req.session.isLogin = 1;
@@ -41,9 +39,16 @@ app.post('/checkLogin',function (req, res)
                 req.session.gender = result.gender;       
                 req.session.role = result.role;       
                 req.session.status = result.status;       
-                req.session.photoname = result.photoname;     
+                req.session.photoname = result.photoname;  
+                if(result.dob == '-')
+                {
+                  res.send("dobEmpty");
+                }
+                else
+                {   
                 var re = req.session.redirectUrl || '/login/home';
                 res.send(re);
+              }
             }
             else 
               res.send("false")
@@ -101,6 +106,10 @@ app.get('/404',function(req,res) {
 
 app.get('/editProfile',function(req,res) {
   res.render('ProfileDetails',{data : req.session});
+})
+
+app.get('/newProfileUpdate',function(req,res) {
+  res.render('newProfileUpdate',{data : req.session});
 })
 
 module.exports = app;

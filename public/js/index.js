@@ -29,6 +29,10 @@ user_submit.addEventListener("click", function() {
 		{
 			window.location = "/login/404";
 		}
+		else if(data == 'dobEmpty')
+		{
+			window.location = "/login/newProfileUpdate";
+		}
 		else
 		{
 			window.location = data;

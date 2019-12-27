@@ -21,6 +21,7 @@ function updateUserDetails () {
 	obj.gender = user_gender;
 	obj.phone = user_phone;
 	obj.city = user_city;
+	obj.status = 'Confirmed';
 
 	if(birth_date == '' || user_gender == '' || user_phone == '' || user_city == '')
 	{
@@ -69,7 +70,7 @@ function updateUserDetails () {
 			        OK: {
 			            btnClass: 'btn-danger any-other-class',
 			             action: function () { 
-			             window.location - '/login/home';     
+			             window.location = '/login/home';     
 			        	}
 			   		},
 			    	}
