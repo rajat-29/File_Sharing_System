@@ -4,13 +4,13 @@ let path = require('path');
 const bcrypt = require('bcrypt');
 let saltRounds = 10
 
-app.use(express.static(path.join(__dirname,'../public')));
-app.use(express.static(path.join(__dirname,'../public/uploads')));
+app.use(express.static(path.join(__dirname,'../../public')));
+app.use(express.static(path.join(__dirname,'../../public/uploads')));
 
 var mongoose = require('mongoose')
-var auth=require('../MiddleWares/auth');
-var users = require('../Models/userSchema');
-var fileses = require('../Models/fileSchema');
+var auth=require('../../MiddleWares/auth');
+var users = require('../../Models/userSchema');
+var fileses = require('../../Models/fileSchema');
 
 app.get('/addUser',auth, function(req,res) {
 	res.render('addUser',{data : req.session});

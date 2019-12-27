@@ -4,15 +4,15 @@ let path = require('path');
 var multer=require('multer');
 var fs = require('fs');
 
-app.use(express.static(path.join(__dirname,'../public')));
-app.use(express.static(path.join(__dirname,'../public/uploads')));
+app.use(express.static(path.join(__dirname,'../../public')));
+app.use(express.static(path.join(__dirname,'../../public/uploads')));
 
 var mongoose = require('mongoose')
 
-var auth=require('../MiddleWares/auth');
-var multer=require('../MiddleWares/multer');
+var auth=require('../../MiddleWares/auth');
+var multer=require('../../MiddleWares/multer');
 
-var fileses = require('../Models/fileSchema');
+var fileses = require('../../Models/fileSchema');
 
 app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});

@@ -1,17 +1,9 @@
-let express = require('express');
-var app = require('express').Router();
-let path = require('path');
 const bcrypt = require('bcrypt');
 let saltRounds = 10
 
-app.use(express.static(path.join(__dirname,'../public')));
-app.use(express.static(path.join(__dirname,'../public/uploads')));
-
-var mongoose = require('mongoose')
 var users = require('../Models/userSchema');
 
-app.post('/checkLogin',function (req, res)   
-{
+exports.checkLogin = (req, res) => {
       req.session.isLogin = 0;
       var username = req.body.email;
       var pasword = req.body.password;
@@ -55,18 +47,10 @@ app.post('/checkLogin',function (req, res)
               res.send("false")
           }) 
         }
-      })     
-})
+    })     
+}
 
-app.get('/home',function(req,res) {
-	res.render('dashboard',{data : req.session});
-})
-
-app.get('/changePassword',function(req,res) {
-	res.render('changePassword',{data : req.session});
-})
-
-app.post('/changePassword',function(req,res){
+exports.changePassword = (req,res) => {
     bcrypt.hash(req.body.newpass, saltRounds, (err, hash) => {
               if(!err) {
                 users.updateOne({"email" : req.session.email},{$set: { "password" : hash}} ,
@@ -81,36 +65,4 @@ app.post('/changePassword',function(req,res){
               else {}
     }) 
     res.send("Password Changed Successfully")
-})
-
-app.get('/logout', function(req,res) {
-    req.session.isLogin = 0;
-    req.session.destroy();
-    res.render('index');
-})
-
-app.get('/signUp',function(req,res) {
-  res.render('signUp');
-})
-
-app.get('/sendFile',function(req,res) {
-  res.render('sendFileWithoutLogin');
-})
-
-app.get('/index',function(req,res) {
-  res.render('index');
-})
-
-app.get('/404',function(req,res) {
-  res.render('404');
-})
-
-app.get('/editProfile',function(req,res) {
-  res.render('ProfileDetails',{data : req.session});
-})
-
-app.get('/newProfileUpdate',function(req,res) {
-  res.render('newProfileUpdate',{data : req.session});
-})
-
-module.exports = app;
+}
