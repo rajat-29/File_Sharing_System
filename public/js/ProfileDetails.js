@@ -13,6 +13,7 @@ function updateUserDetails () {
 	var user_gender = $('#user_gender').val();
 	var user_phone = $('#user_phone').val();
 	var user_city = $('#user_city').val();
+	var photoname = $('#profilepic').attr('src');
 
 	var obj = new Object();
 	obj.email = user_email;
@@ -22,6 +23,7 @@ function updateUserDetails () {
 	obj.phone = user_phone;
 	obj.city = user_city;
 	obj.status = 'Confirmed';
+	obj.photoname = photoname;
 
 	if(birth_date == '' || user_gender == '' || user_phone == '' || user_city == '')
 	{
@@ -61,19 +63,34 @@ function updateUserDetails () {
 			request.setRequestHeader("Content-Type","application/json");
 			request.send(JSON.stringify(obj))
 			request.addEventListener("load",function()
-        	{
-         		$.confirm({
-			    	title: 'Update ?',
-			    	content: "Data Updated Successfully ",
-			    	draggable: true,
-			   		buttons: {
-			        OK: {
-			            btnClass: 'btn-danger any-other-class',
-			             action: function () { 
-			             window.location = '/login/home';     
-			        	}
-			   		},
-			    	}
-				});
+        	{ 
+        		alert("Data Updated Successfully");
+			     window.location = '/login/home';     
+
         	});
 }
+
+ $('#userImage').submit(function(e){
+
+    $(this).ajaxSubmit({
+    	data: {title: 'abc'},
+       contentType: 'application/json',
+       success: function(response){
+       	console.log(response)
+	        if(response == 'false')
+	        {
+	         	alert('Files are Not Uploaded');
+            location.reload();
+	        } 
+	        else if(response == 'format')
+	        {
+	           alert("File Format is not correct")
+	        }
+	        else
+	        {
+	         	window.location = '/login/editProfile'
+	        }   
+        }
+   });
+  return false;
+});

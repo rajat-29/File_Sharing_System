@@ -1,4 +1,3 @@
-var adding = document.getElementById('submit-btn');
 var cancel_addUser = document.getElementById('cancel-btn');
 var flag = 0;
 

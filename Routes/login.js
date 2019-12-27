@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 let saltRounds = 10
 
 app.use(express.static(path.join(__dirname,'../public')));
+app.use(express.static(path.join(__dirname,'../public/uploads')));
 
 var mongoose = require('mongoose')
 var users = require('../Models/userSchema');

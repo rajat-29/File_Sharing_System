@@ -11,11 +11,8 @@ var mongoose = require('mongoose')
 var auth=require('../MiddleWares/auth');
 var fileses = require('../Models/fileSchema');
 
-
-
 function sanitizeFile(file, cb) {
-
-    let fileExts = ['png', 'jpg', 'jpeg', 'gif', 'pdf']
+    let fileExts = ['png', 'jpg', 'jpeg', 'gif']
     let isAllowedExt = fileExts.includes(file.originalname.split('.')[1].toLowerCase());
 
     if(isAllowedExt){
@@ -35,16 +32,18 @@ var storage = multer.diskStorage({
       cb(null, photoname)
     }
 })
-
-   
-  var upload = multer({ storage: storage ,
-
+ 
+var upload = multer({ storage: storage ,
     fileFilter: function (req, file, cb) {
-    sanitizeFile(file, cb);
-      
+    sanitizeFile(file, cb);   
     }
 }).array('myFiles')
 
+var uploadUserImage = multer({ storage: storage ,
+    fileFilter: function (req, file, cb) {
+    sanitizeFile(file, cb);   
+    }
+}).single('userFile')
 
 app.get('/uploadFile',auth, function(req,res) {
 	res.render('uploadFile',{data : req.session});
@@ -81,7 +80,24 @@ upload(req,res, (err) => {
                     res.send('true');
                }     
         }
-})
+    })
+});
+
+app.post('/Userupload', function(req, res) {
+uploadUserImage(req,res, (err) => {
+    if (err){ 
+        res.send("format")
+        }else{
+               if (req.file == undefined) {
+                res.send('false');
+               }
+               else
+               {
+                    req.session.photoname = '/' + req.file.filename;
+                    res.send('true');
+               }     
+        }
+    })
 });
 
 app.post('/uploadmultipleWithoutLogin', function(req, res) {
