@@ -6,8 +6,6 @@ app.use(express.static(path.join(__dirname,'../../public')));
 app.use(express.static(path.join(__dirname,'../../public/uploads')));
 
 var auth=require('../../MiddleWares/auth');
-var users = require('../../Models/userSchema');
-var fileses = require('../../Models/fileSchema');
 
 let adminController = require('../../Controllers/admin');
 
