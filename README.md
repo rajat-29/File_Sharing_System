@@ -33,9 +33,9 @@ It will run under the url http://127.0.0.1:8000/
   <li>EJS</li>
   <li>Multer</li>
   <li>Bcrypt Module</li>
-<ul>
+</ul>
 
-## Login
+## Login :
 
 <ul>
   <li> ID - admin@cq.com </li>
