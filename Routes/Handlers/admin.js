@@ -23,22 +23,22 @@ app.get('/allFiles',auth, function(req,res) {
 
 // controllers //
 
-app.use('/addnewuser',adminController.addnewuser);
+app.use('/addnewuser',auth,adminController.addnewuser);
 
-app.use('/showuser',adminController.showuser);
+app.use('/showuser',auth,adminController.showuser);
 
-app.use('/deativateuserdata',adminController.deativateuserdata);
+app.use('/deativateuserdata',auth,adminController.deativateuserdata);
 
-app.use('/reativateuserdata',adminController.reativateuserdata);
+app.use('/reativateuserdata',auth,adminController.reativateuserdata);
 
-app.use('/updateuserdetails',adminController.updateuserdetails);
+app.use('/updateuserdetails',auth,adminController.updateuserdetails);
 
-app.use('/allFiles',adminController.allFiles);
+app.use('/allFiles',auth,adminController.allFiles);
 
-app.use('/switchasuser',adminController.switchasuser);
+app.use('/switchasuser',auth,adminController.switchasuser);
 
-app.use('/switchasadmin',adminController.switchasadmin);
+app.use('/switchasadmin',auth,adminController.switchasadmin);
 
-app.use('/checkemail',adminController.checkemail);
+app.use('/checkemail',auth,adminController.checkemail);
 
 module.exports = app;

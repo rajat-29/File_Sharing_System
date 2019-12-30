@@ -32,18 +32,18 @@ app.get('/receivedFiles',auth, function(req,res) {
 
 // controllers //
 
-app.use('/uploadmultiple',userController.uploadmultiple);
+app.use('/uploadmultiple',auth,userController.uploadmultiple);
 
-app.use('/Userupload',userController.Userupload);
+app.use('/Userupload',auth,userController.Userupload);
 
-app.use('/uploadmultipleWithoutLogin',userController.uploadmultipleWithoutLogin);
+app.use('/uploadmultipleWithoutLogin',auth,userController.uploadmultipleWithoutLogin);
 
-app.use('/showSendFiles',userController.showSendFiles);
+app.use('/showSendFiles',auth,userController.showSendFiles);
 
-app.use('/deleteSendFiles',userController.deleteSendFiles);
+app.use('/deleteSendFiles',auth,userController.deleteSendFiles);
 
-app.use('/recentFiles',userController.recentFiles);
+app.use('/recentFiles',auth,userController.recentFiles);
 
-app.use('/receivedFiles',userController.receivedFiles);
+app.use('/receivedFiles',auth,userController.receivedFiles);
 
 module.exports = app;
