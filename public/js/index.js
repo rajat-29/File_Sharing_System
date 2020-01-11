@@ -7,7 +7,18 @@ var sendFile = document.getElementById('sendFile');
 user_submit.addEventListener("click", function() {
 	if(user_name.value == '' || user_pass == '')
 	{
-		alert('Field is Empty');
+		$.confirm({
+	      title: 'Fields ?',
+	      content: "Field is Empty !! ",
+	      draggable: true,
+	      buttons: {
+	        OK: {
+	            btnClass: 'btn-danger any-other-class',
+	             action: function () {      
+	          }
+	          },
+	          }
+	    });
 		return;
 	}
 
@@ -19,11 +30,33 @@ user_submit.addEventListener("click", function() {
 		var data = request.responseText;
 		if(data == 'false')
 		{
-			alert("Email or Password Doesn't Match")
+			$.confirm({
+		      title: 'Email ?',
+		      content: "Email or Password Doesn't Match !! ",
+		      draggable: true,
+		      buttons: {
+		        OK: {
+		            btnClass: 'btn-danger any-other-class',
+		             action: function () {      
+		          }
+		          },
+		          }
+		    });
 		}
 		else if(data == 'not exits')
 		{
-			alert('Email Not Exists');
+			$.confirm({
+		      title: 'Email ?',
+		      content: "Email not exits !! ",
+		      draggable: true,
+		      buttons: {
+		        OK: {
+		            btnClass: 'btn-danger any-other-class',
+		             action: function () {      
+		          }
+		          },
+		          }
+		    });
 		}
 		else if(data == 'deactivate')
 		{
