@@ -27,10 +27,6 @@ app.get('/index',function(req,res) {
   res.render('index');
 })
 
-app.get('/404',function(req,res) {
-  res.render('404');
-})
-
 app.get('/editProfile',auth,function(req,res) {
   res.render('ProfileDetails',{data : req.session});
 })

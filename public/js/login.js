@@ -28,11 +28,10 @@ user_submit.addEventListener("click", function() {
 	request.send(JSON.stringify({email : user_name.value,password : user_pass.value}));
 	request.addEventListener("load", function() {
 		var data = request.responseText;
-		if(data == 'false')
-		{
+		if(data == 'false')	{
 			$.confirm({
-		      title: 'Email ?',
-		      content: "Email or Password Doesn't Match !! ",
+		      title: 'Password ?',
+		      content: "Password Doesn't Match !! ",
 		      draggable: true,
 		      buttons: {
 		        OK: {
@@ -43,8 +42,7 @@ user_submit.addEventListener("click", function() {
 		          }
 		    });
 		}
-		else if(data == 'not exits')
-		{
+		else if(data == 'not exits') {
 			$.confirm({
 		      title: 'Email ?',
 		      content: "Email not exits !! ",
@@ -58,16 +56,23 @@ user_submit.addEventListener("click", function() {
 		          }
 		    });
 		}
-		else if(data == 'deactivate')
-		{
-			window.location = "/login/404";
+		else if(data == 'deactivate') {
+			$.confirm({
+				title: 'Account ?',
+				content: "Account has been deactivated !! ",
+				draggable: true,
+				buttons: {
+				  OK: {
+					  btnClass: 'btn-danger any-other-class',
+					   action: function () {}
+					},
+				}
+			});
 		}
-		else if(data == 'dobEmpty')
-		{
+		else if(data == 'dobEmpty')	{
 			window.location = "/login/newProfileUpdate";
 		}
-		else
-		{
+		else {
 			window.location = data;
 		}
 	})
