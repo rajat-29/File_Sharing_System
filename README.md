@@ -102,3 +102,33 @@ npm install dotenv
 ```
 npm install bcrypt  / npm i bcrypt
 ```
+
+## Schema
+
+<h4><b>User Schema</b></h4>
+
+| Name         | Type   | Required | Unique | Encrpyted |
+| ------------ | ------ | -------- | ------ | --------- |
+| Name         | String | Yes      | No     | No        |
+| Email        | String | Yes      | Yes    | No        |
+| Password     | String | Yes      | No     | Yes       |
+| Phone No.    | String | Yes      | No     | No        |
+| City         | String | Yes      | No     | No        |
+| Gender       | String | Yes      | No     | No        |
+| DOB          | String | Yes      | No     | No        |
+| Role         | String | Yes      | No     | No        |
+| Status       | String | Yes      | No     | No        |
+| Photoname    | String | No       | No     | No        |
+| Flag         | String | No       | No     | No        |
+
+<h4><b>File Schema</b></h4>
+
+| Name          | Type   |
+| ------------- | ------ |
+| From          | String |
+| To            | String |
+| Message       | String |
+| FileName      | String |
+| OriginalName  | String |
+| Type          | String |
+| EntryDate     | String |
