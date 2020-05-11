@@ -1,124 +1,62 @@
-<!DOCTYPE html>
-<html >
-    <head>
-        <title>User List</title>
-        <meta name="viewport" content="width=device-width" initial-scale="1.0">
-        <link href="css/partials.css" rel="stylesheet" type = "text/css">
-        <link href = "css/style.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" >
-        <!-- BOOTSTRAP 3-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/openpanel.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-        <link rel="stylesheet" type="text/css" href="css/datatables.css">
-        <link type="text/css" href="css/datatables.min.css">
-        <link rel="stylesheet" type="text/css" href="css/trumbowgy.css">
-        <style>
-    .main {
-        margin-left: 100px;
-        margin-top: 80px;
-        background-color: rgb(250, 250, 250);
-        transition: .5s;
-    }
-    .usertable {
-        border-width: 1px;
-        margin: 50px;
-        border-style: solid;
-        border-color: rgb(204, 203, 203);
-        width: 100%;
-    }
-    
-    .actioncolumn {
-        text-align: center;
-    }
-    .actionbut {
-        padding: 5px 8px 5px 8px;
-        cursor: pointer;
-        margin: 5px;
-        font-size: 14px;
-        color: white;
-        display: inline-block;
-    }
-    .emailbut {
-        background-color: black;
-    }
-    .editbut {
-        background-color: blue;
-    }
-    .deactivatebut {
-        background-color: rgb(255, 196, 0);
-    }
-    .activatebut {
-        background-color: rgb(81, 255, 0);
-    }
-@media (max-width: 768px)
-{
-  #myModal, #deactivateuser, #updateModal
-      {
-        margin-top: 15%;
-      }
-}
-</style>
-</head>
-    <body class="body">
-        <%- include('partials/top-bar.ejs') %>
-        <div id="viewscreen" >
-            <%- include('partials/side-navbar.ejs') %>
-            <div id="rightview">
-                <div class="container-fluid div-min-width" style="padding:0">
-                    <div class="row">
-                        <div class="col-lg-12 parentDiv" style="padding:0">
-                            <div class="to-center-div">
-                                <div class="container childDiv">
-                                    <div class="panel panel-default" style="background: rgb(249, 249, 249);box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);overflow-x: scroll;.inner-border::-webkit-scrollbar:display: none;">
-                                        <div class="panel-body">
-                                            <div class="userbtns">
-				<button type="button" class="btn btn-primary" style="background-color: black">User List</button>		
+<%- layout('layout/layout.ejs') %>
 
-				<select id="roles" class="btn btn-primary" class="mdb-select md-form colorful-select dropdown-primary" style="background-color: black;float: right;margin-right: 1%;margin-left: 1%;">
-        			<option selected>All</option>
-  					<option value="Admin">Admin</option>
- 					<option value="User">Users</option>
-				</select>
+<link rel="stylesheet" type="text/css" href="css/datatables.css">
+<link type="text/css" href="css/datatables.min.css">
 
-				<select id="selectoption" class="btn btn-primary" class="mdb-select md-form colorful-select dropdown-primary" style="background-color: black;float: right;margin-left: 1%;">
-        			<option selected>All</option>
-  					<option value="Pending">Pending</option>
- 					<option value="Confirmed">Confirmed</option>
-				</select>
+<%- include('partials/top-bar.ejs') %>
+    <div id="viewscreen" >
+    <%- include('partials/side-navbar.ejs') %>
+        <div id="rightview">
+            <div class="container-fluid div-min-width" style="padding:0">
+                <div class="row">
+                    <div class="col-lg-12 parentDiv" style="padding:0">
+                        <div class="to-center-div">
+                            <div class="container childDiv">
+                                <div class="panel panel-default" style="background: rgb(249, 249, 249);box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);overflow-x: scroll;.inner-border::-webkit-scrollbar:display: none;">
+                                    <div class="panel-body">
+                                        <div class="userbtns">
 
-				 <button class="btn btn-primary" id="refresh" style="float: right;background-color: black;"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>				
-			</div>
+                                        <button type="button" class="btn btn-primary" style="background-color: black">User List</button>		
 
-			<div>
-				<table class="table table-bordered" id="datatableses">
-  					<thead>
-    				<tr>
-       					<th>Username/Email</th>
-       					<th>Phone</th>
-       				 	<th>City</th>
-       				 	<th>Status</th>
-       				 	<th>Role</th>
-       				 	<th>Actions</th>
-      				</tr>
-   					</thead>
-   					<tbody id="list">
-   						
-   					</tbody>
-  				</table>
-		</div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+                                        <select id="roles" class="btn btn-primary" class="mdb-select md-form colorful-select dropdown-primary" style="background-color: black;float: right;margin-right: 1%;margin-left: 1%;">
+                                            <option selected>All</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="User">Users</option>
+                                        </select>
+
+                                        <select id="selectoption" class="btn btn-primary" class="mdb-select md-form colorful-select dropdown-primary" style="background-color: black;float: right;margin-left: 1%;">
+                                            <option selected>All</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Confirmed">Confirmed</option>
+                                        </select>
+
+                                        <button class="btn btn-primary" id="refresh" style="float: right;background-color: black;"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>				
+                                        </div>
+
+			                            <div>
+                                            <table class="table table-bordered" id="datatableses">
+                                                <thead>
+                                                <tr>
+                                                    <th>Username/Email</th>
+                                                    <th>Phone</th>
+                                                    <th>City</th>
+                                                    <th>Status</th>
+                                                    <th>Role</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="list"></tbody>
+                                            </table>
+		                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
 <div id="updateModal" class="modal fade" role="dialog" style="z-index:9999;">
     <div class="modal-dialog">
@@ -191,10 +129,6 @@
     </div>
 </div>
 
-<script src="js/trumbowgy.js"></script>
 <script type="text/javascript" src="js/datatables.js"></script>
 <script type="text/javascript" src="js/datatables.min.js"></script>
 <script type="text/javascript" src="js/userList.js"></script>
-
-</body>
-</html>

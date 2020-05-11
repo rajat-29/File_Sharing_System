@@ -1,9 +1,21 @@
 ﻿#viewscreen {
-  padding-left: 0px;
-  overflow: hidden;
-}
+    padding-left: 0px;
+    overflow: hidden;
+  }
+  
+  #viewscreen.toggle-pc {
+      padding-left: 250px;
+      overflow: hidden;
+  }
+  
+  #rightview {
+      width: 100%;
+      overflow-x: hidden;
+      transition: 0.5s;
+      margin-top: 60px;
+  }
 
-.content-wrapper {
+  .content-wrapper {
     margin-top: 40px;
     min-height:500px;
     padding-bottom:90px;
@@ -15,90 +27,88 @@
     border-bottom:5px solid black;
     text-transform:uppercase;
 }
+  
+  #profilepic
+  {
+      width: 150px;
+      height: 150px;
+      padding: 0.25rem;
+      background-color: #FCFCFC;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+      max-width: 100%;
+      box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+  }
+  
+  .to-center-div
+  {
+      margin-top: 2%;
+  }
+  
+  @media (min-width: 768px)
+  {
+      .imageDiv
+      {
+          display: block;
+      }
+      .to-center-div
+      {
+          margin-left:60px;
+      }
+  
+  }
+  
+  @media (max-width: 768px)
+  {
+      .imageDiv
+      {
+          display: block;
+          margin-left: 80px;
+      }
+  
+  }
+  
+  .actionbut {
+      padding: 5px 8px 5px 8px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+      color: white;
+      display: inline-block;
+  }
+  
+  .emailbut {
+      background-color: black;
+  }
+  
+  .editbut {
+      background-color: blue;
+  }
+  
+  .deactivatebut {
+      background-color: rgb(255, 196, 0);
+  }
+  
+  .activatebut {
+      background-color: rgb(81, 255, 0);
+  }
+  
+  .to-center-div {
+      margin-top: 2%;
+  }
+  
+  @media (min-width: 768px) {
+      .to-center-div {
+          margin-left:60px;
+      }</body>
+      </html>
+  }
 
-#viewscreen.toggle-pc {
-    padding-left: 250px;
-    overflow: hidden;
-}
-
-#rightview {
-    width: 100%;
-    overflow-x: hidden;
-    transition: 0.5s;
-    margin-top: 60px;
-}
-
-#profilepic
-{
-    width: 150px;
-    height: 150px;
-    padding: 0.25rem;
-    background-color: #FCFCFC;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
-    max-width: 100%;
-    box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
-}
-
-.to-center-div
-{
-    margin-top: 2%;
-}
-
-@media (min-width: 768px)
-{
-    .imageDiv
-    {
-        display: block;
-    }
-    .to-center-div
-    {
-        margin-left:60px;
-    }
-
-}
 
 @media (max-width: 768px)
 {
-    .imageDiv
-    {
-        display: block;
-        margin-left: 80px;
-    }
-
-}
-
-.actionbut {
-    padding: 5px 8px 5px 8px;
-    cursor: pointer;
-    margin: 5px;
-    font-size: 14px;
-    color: white;
-    display: inline-block;
-}
-
-.emailbut {
-    background-color: black;
-}
-
-.editbut {
-    background-color: blue;
-}
-
-.deactivatebut {
-    background-color: rgb(255, 196, 0);
-}
-
-.activatebut {
-    background-color: rgb(81, 255, 0);
-}
-
-.to-center-div {
-    margin-top: 2%;
-}
-
-@media (min-width: 768px) {
-    .to-center-div {
-        margin-left:60px;
-    }
+  #myModal, #deactivateuser, #updateModal
+      {
+        margin-top: 15%;
+      }
 }
