@@ -9,35 +9,31 @@ var auth=require('../../MiddleWares/auth');
 
 let loginController = require('../../Controllers/login');
 
-app.get('/home',auth,function(req,res) {
+app.get('/home',auth.checkSession,function(req,res) {
 	res.render('dashboard',{data : req.session});
 })
 
-app.get('/changePassword',auth,function(req,res) {
+app.get('/changePassword',auth.checkSession,function(req,res) {
 	res.render('changePassword',{data : req.session});
 })
 
-app.get('/logout', auth,function(req,res) {
+app.get('/logout', auth.checkSession,function(req,res) {
     req.session.isLogin = 0;
     req.session.destroy();
     res.render('login');
 })
 
-app.get('/index',function(req,res) {
-  res.render('index');
-})
-
-app.get('/editProfile',auth,function(req,res) {
+app.get('/editProfile',auth.checkSession,function(req,res) {
   res.render('ProfileDetails',{data : req.session});
 })
 
-app.get('/newProfileUpdate',auth,function(req,res) {
+app.get('/newProfileUpdate',auth.checkSession,function(req,res) {
   res.render('newProfileUpdate',{data : req.session});
 })
 
 // controllers //
 
 app.use('/checkLogin',loginController.checkLogin);
-app.use('/changePassword',loginController.changePassword);
+app.use('/changePassword',auth.checkSession,loginController.changePassword);
 
 module.exports = app;

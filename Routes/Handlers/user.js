@@ -9,41 +9,41 @@ var auth=require('../../MiddleWares/auth');
 
 let userController = require('../../Controllers/user');
 
-app.get('/uploadFile',auth, function(req,res) {
+app.get('/uploadFile',auth.checkUser, function(req,res) {
 	res.render('uploadFile',{data : req.session});
 })
 
-app.get('/sendFileRecords',auth, function(req,res) {
+app.get('/sendFileRecords',auth.checkUser, function(req,res) {
     res.render('sendFileRecords',{data : req.session});
 })
 
-app.get('/downloadSendFiles/:pro',auth,function(req,res) {
+app.get('/downloadSendFiles/:pro',auth.checkUser,function(req,res) {
     var filePath = '../../public/uploads/' + req.params.pro.toString();
     res.download(path.join(__dirname, filePath));
 })
 
-app.get('/recentFiles',auth, function(req,res) {
+app.get('/recentFiles',auth.checkUser, function(req,res) {
     res.render('recentFiles',{data : req.session});
 })
 
-app.get('/receivedFiles',auth, function(req,res) {
+app.get('/receivedFiles',auth.checkUser, function(req,res) {
     res.render('receivedFiles',{data : req.session});
 })
 
 // controllers //
 
-app.use('/uploadmultiple',auth,userController.uploadmultiple);
+app.use('/uploadmultiple',auth.checkUser,userController.uploadmultiple);
 
-app.use('/Userupload',auth,userController.Userupload);
+app.use('/Userupload',auth.checkUser,userController.Userupload);
 
-app.use('/uploadmultipleWithoutLogin',auth,userController.uploadmultipleWithoutLogin);
+app.use('/uploadmultipleWithoutLogin',auth.checkUser,userController.uploadmultipleWithoutLogin);
 
-app.use('/showSendFiles',auth,userController.showSendFiles);
+app.use('/showSendFiles',auth.checkUser,userController.showSendFiles);
 
-app.use('/deleteSendFiles',auth,userController.deleteSendFiles);
+app.use('/deleteSendFiles',auth.checkUser,userController.deleteSendFiles);
 
-app.use('/recentFiles',auth,userController.recentFiles);
+app.use('/recentFiles',auth.checkUser,userController.recentFiles);
 
-app.use('/receivedFiles',auth,userController.receivedFiles);
+app.use('/receivedFiles',auth.checkUser,userController.receivedFiles);
 
 module.exports = app;
