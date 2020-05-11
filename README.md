@@ -27,7 +27,7 @@ Password: admincq<br>
 ## Features
 <ul>
   <li> Mongoose Database</li>
-  <li>Different View For User And Admin</li> 
+  <li>Different View For Users And Admin</li> 
   <li>Send Files using Multer</li>
   <li>Different Files can be shared</li>
   <li>Seprate View for records of send files</li>
@@ -167,7 +167,7 @@ npm install bcrypt  / npm i bcrypt
 |   |    |    |--- user.ejs
 |   |    |--- index.js
 |   |
-|   |--- viwes
+|   |--- views
 |   |    |--- layout
 |   |    |    |--- layout.ejs
 |   |    | 
@@ -180,6 +180,14 @@ npm install bcrypt  / npm i bcrypt
 |   |    |--- allFiles.ejs
 |   |    |--- changePassword.ejs
 |   |    |--- dashboard.ejs
-|   |    |--- index.ejs
+|   |    |--- login.ejs
+|   |    |--- manageFiles.ejs
+|   |    |--- manageUsers.ejs
 |   |    |--- newProfileUpdate.ejs
+|   |    |--- profileDetails.ejs
+|   |    |--- receivedFiles.ejs
+|   |    |--- recentFiles.ejs
+|   |    |--- sendFileRecord.ejs
+|   |    |--- switchAsUserAdmin.ejs
+|   |    |--- uploads.ejs
 ```
