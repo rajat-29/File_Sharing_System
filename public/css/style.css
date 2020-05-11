@@ -3,6 +3,19 @@
   overflow: hidden;
 }
 
+.content-wrapper {
+    margin-top: 40px;
+    min-height:500px;
+    padding-bottom:90px;
+}
+
+.header-line {
+    font-weight:900;
+    padding-bottom:25px;
+    border-bottom:5px solid black;
+    text-transform:uppercase;
+}
+
 #viewscreen.toggle-pc {
     padding-left: 250px;
     overflow: hidden;
