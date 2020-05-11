@@ -3,7 +3,7 @@ var path = require('path')
 var app = express()
 var session = require('express-session');
 var ejs = require('ejs');
-var mongodb = require('mongodb');
+var mongoose = require('mongoose');	
 var port=8000;
 
 app.set('views', path.join(__dirname, 'Views'));  // view engine setup
@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,'/public'))) /*folder path*/
 app.use(express.static(path.join(__dirname,'/public/uploads')))
 
-var mongoose = require('mongoose');						/*include mongo*/
+					/*include mongo*/
 var mongoDB = 'mongodb://localhost/fileManagement';
 
 mongoose.set('useFindAndModify', false);

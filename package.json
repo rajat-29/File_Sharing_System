@@ -1,0 +1,29 @@
+{
+  "name": "file_sharing_system",
+  "version": "1.0.0",
+  "description": "File Sharing Web App to share files like images,pdf with your friends in the college using Nodejs,MongoDb,Bootstrap !!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajat-29/File_Sharing_System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajat-29/File_Sharing_System/issues"
+  },
+  "homepage": "https://github.com/rajat-29/File_Sharing_System#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.13",
+    "multer": "^1.4.2",
+    "path": "^0.12.7"
+  }
+}
