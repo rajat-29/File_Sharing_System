@@ -23,61 +23,15 @@ function open_adduser_page()
 
 function openuserlist()
 {
-    window.location = '/admin/userList';
+    window.location = '/admin/manage_users';
 }
 
 function allFiles()
 {
-    window.location = '/admin/allFiles';
+    window.location = '/admin/manage_files';
 }
 
-function switchasuser()
-{
-      $.confirm({
-    title: 'Switch as User',
-    content: 'Do you really want switch state...',
-    draggable: true,
-    buttons: {
-        Yes: {
-            btnClass: 'btn-success any-other-class',
-            action: function () {
-            btnClass: 'btn-red any-other-class'
-            window.location = "/admin/switchasuser";
-        }
-    },
-        No: {
-            btnClass: 'btn-danger any-other-class',
-             action: function () {
-            
-        }
-    },
-    }
-    });
-}
 
-function switchasadmin()
-{
-      $.confirm({
-    title: 'Switch as Admin',
-    content: 'Do you really want switch state...',
-    draggable: true,
-    buttons: {
-        Yes: {
-            btnClass: 'btn-success any-other-class',
-            action: function () {
-            btnClass: 'btn-red any-other-class'
-            window.location = "/admin/switchasadmin";
-        }
-    },
-        No: {
-            btnClass: 'btn-danger any-other-class',
-             action: function () {
-            
-        }
-    },
-    }
-    });
-}
 
 function uploadFile()
 {

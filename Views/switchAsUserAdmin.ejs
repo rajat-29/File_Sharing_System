@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Switching...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    body{
+        font-family: sans-serif;
+        padding: 0;
+        margin: 0;
+        background-color: rgb(243,244,244);
+        display: flex;
+        justify-content: center;
+        align-iteam: center;
+        height: 100vh;
+    }
+    div{
+      margin-top:15%;
+      text-align: center;
+      color: rgb(135,148,165);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1 id="headingTag"></h1>
+    <img src="images/loading.gif">
+  </div>
+
+<script type="text/javascript">
+  var role = <%-JSON.stringify(data.role)%>
+  
+  if(role == "superAdmin") {
+    document.title = "Switch as User";
+    document.getElementById('headingTag').innerHTML = "Switch as User";
+    setTimeout(function(){ window.location="/login/home"; }, 2000);
+  }
+  if(role == "Admin") {
+    document.title = "Switch as Admin";
+    document.getElementById('headingTag').innerHTML = "Switch as Admin";
+    setTimeout(function(){ window.location="/login/home"; }, 2000);
+  }
+  
+</script>  
+</body>
+</html>

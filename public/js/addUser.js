@@ -15,19 +15,18 @@ adding.addEventListener("click", function() {
 
 	if(user_name.value == '' || user_email.value == '' || user_phone.value == '' || user_city.value == '')
 	{
-			$.confirm({
-	    	title: 'Fields ?',
-	    	content: "Fields can't be Empty ",
-	    	draggable: true,
-	   		buttons: {
-	        OK: {
+		$.confirm({
+	    title: 'Fields ?',
+	    content: "Fields can't be Empty ",
+	    draggable: true,
+	   	buttons: {
+	    	OK: {
 	            btnClass: 'btn-danger any-other-class',
-	             action: function () {      
-	        	}
+	             action: function () {}
 	   		},
-	    	}
-			});
-			return false;
+	    }
+		});
+		return;
 	}
 	else if(ph.length<10 || ph.length>10)
 	{
@@ -38,16 +37,14 @@ adding.addEventListener("click", function() {
 	   		buttons: {
 	        OK: {
 	            btnClass: 'btn-danger any-other-class',
-	             action: function () {      
-	        	}
+	             action: function () {}
 	   		},
 	    	}
 		});
 		return;
 	}
 
-	if(!ValidateEmail(user_email.value))
-	{
+	if(!ValidateEmail(user_email.value)) {
 		$.confirm({
 	    	title: 'Email format ?',
 	    	content: "Email format is not valid ",
@@ -55,8 +52,7 @@ adding.addEventListener("click", function() {
 	   		buttons: {
 	        OK: {
 	            btnClass: 'btn-danger any-other-class',
-	             action: function () {      
-	        	}
+	             action: function () {}
 	   		},
 	    	}
 		});
@@ -76,8 +72,7 @@ adding.addEventListener("click", function() {
 	obj.photoname = '/default.png'
 	obj.flag = 1;
 
-	if(flag == 1)
-	{
+	if(flag == 1) {
 		$.confirm({
 		      title: 'User ?',
 		      content: "User Is Already Registred !! ",
@@ -85,31 +80,29 @@ adding.addEventListener("click", function() {
 		      buttons: {
 		        OK: {
 		            btnClass: 'btn-danger any-other-class',
-		             action: function () { 
-		          }
+		             action: function () {}
 		          },
 		          }
 		    });
 	}
-	else
-	{
+	else {
 		var request = new XMLHttpRequest();
 	    request.open('POST',"/admin/addnewuser");
 	    request.setRequestHeader("Content-Type","application/json");
 	    request.send(JSON.stringify(obj))
 	    request.addEventListener("load",function() {
-	         $.confirm({
-		    	title: 'New User ?',
-		    	content: "New User is Registered ",
-		    	draggable: true,
-		   		buttons: {
+	        $.confirm({
+		    title: 'New User ?',
+		    content: "New User is Registered ",
+		    draggable: true,
+		   	buttons: {
 		        OK: {
 		            btnClass: 'btn-danger any-other-class',
-		             action: function () {  
-		             location.reload();    
+		            action: function () {  
+		             	location.reload();    
 		        	}
 		   		},
-		    	}
+		    }
 			});
 	    });
 	}
@@ -128,9 +121,7 @@ cancel_addUser.addEventListener("click", function(){
 	location.reload();
 })
 
-
-function email_avail()
-{
+function email_avail() {
 	document.getElementById("email_info").style.display = 'visible';
 	document.getElementById("email_info").style.display = 'block';
 	document.getElementById("email_info").style.marginTop = '10px';

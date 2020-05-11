@@ -13,12 +13,12 @@ app.get('/addUser',auth, function(req,res) {
 	res.render('addUser',{data : req.session});
 })
 
-app.get('/userList',auth,function(req,res){  
-      res.render('userlist', {data: req.session});
+app.get('/manage_users',auth,function(req,res){  
+      res.render('manage_users', {data: req.session});
 }) 
 
-app.get('/allFiles',auth, function(req,res) {
-    res.render('allFiles',{data : req.session});
+app.get('/manage_files',auth, function(req,res) {
+    res.render('manage_files',{data : req.session});
 })
 
 // controllers //
