@@ -72,7 +72,3 @@ user_submit.addEventListener("click", function() {
 		}
 	})
 })
-
-sendFile.addEventListener("click", function() {
-	window.location = "/login/sendFile";
-})

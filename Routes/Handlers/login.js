@@ -23,10 +23,6 @@ app.get('/logout', auth,function(req,res) {
     res.render('login');
 })
 
-app.get('/sendFile',function(req,res) {
-  res.render('sendFileWithoutLogin');
-})
-
 app.get('/index',function(req,res) {
   res.render('index');
 })
