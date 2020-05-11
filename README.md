@@ -132,3 +132,54 @@ npm install bcrypt  / npm i bcrypt
 | OriginalName  | String |
 | Type          | String |
 | EntryDate     | String |
+
+
+## Directory
+
+```bash
+|___ Root
+|   |--- app.js
+|   |
+|   |--- Controller
+|   |    |--- admin.js
+|   |    |--- login.js
+|   |    |--- user.js
+|   |
+|   |--- Dump (Mongoose Dump) (Dump)
+|   |
+|   |--- Middlewares
+|   |    |--- auth.js
+|   |    |--- multer.js
+|   |
+|   |--- Models
+|   |    |--- FileSchema.js
+|   |    |--- UserSchema.js
+|   |
+|   |--- Public
+|   |    |--- css (Static)
+|   |    |--- images (Staic)
+|   |    |--- script (Static)
+|   |
+|   |--- Routes
+|   |    |--- Handlers
+|   |    |    |--- admin.ejs
+|   |    |    |--- login.ejs
+|   |    |    |--- user.ejs
+|   |    |--- index.js
+|   |
+|   |--- viwes
+|   |    |--- layout
+|   |    |    |--- layout.ejs
+|   |    | 
+|   |    |--- partials
+|   |    |    |--- header.ejs
+|   |    |    |--- side-navbar.ejs
+|   |    |    |--- top-navbar.ejs
+|   |    | 
+|   |    |--- addUser.ejs
+|   |    |--- allFiles.ejs
+|   |    |--- changePassword.ejs
+|   |    |--- dashboard.ejs
+|   |    |--- index.ejs
+|   |    |--- newProfileUpdate.ejs
+```
