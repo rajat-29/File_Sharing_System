@@ -4,24 +4,20 @@ let saltRounds = 10
 var users = require('../Models/userSchema');
 
 exports.checkLogin = (req, res) => {
-      req.session.isLogin = 0;
-      var username = req.body.email;
-      var pasword = req.body.password;
-      users.findOne({email: username}, function(error,result)
-      {
-        if(error)
+    req.session.isLogin = 0;
+
+    users.findOne({email: req.body.email}, function(error,result) {
+      if(error)
         throw error;
 
-        if(!result) {
+      if(!result) 
           res.send("not exits");
-        }
-        else if(result.flag  == '0')
-        {
-          res.send("deactivate");
-        }
-        else {
+      else if(result.flag  == '0')
+          res.send("deactivate");  
+      else {
            bcrypt.compare(req.body.password,result.password,function(err,resi) {
             if(resi == true) {
+              
                 req.session.isLogin = 1;
                 req.session.email = req.body.email;
                 req.session.name = result.name;       
@@ -34,14 +30,11 @@ exports.checkLogin = (req, res) => {
                 req.session.status = result.status;       
                 req.session.photoname = result.photoname;  
                 if(result.dob == '-')
-                {
                   res.send("dobEmpty");
+                else  {  
+                  var re = req.session.redirectUrl || '/login/home';
+                  res.send(re);
                 }
-                else
-                {   
-                var re = req.session.redirectUrl || '/login/home';
-                res.send(re);
-              }
             }
             else 
               res.send("false")

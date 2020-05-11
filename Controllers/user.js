@@ -6,17 +6,15 @@ var fileses = require('../Models/fileSchema');
 
 exports.uploadmultiple = (req, res) => {
     multer.upload(req,res, (err) => {
-        if (err){ 
+        if (err)
             res.send("format")
-        }else{
+        else{
            const files = req.files
-              if(files.length == 0) {
+              if(files.length == 0) 
                 res.send('false');
-               }
-               else
-               {
-                    for(var i=0;i<files.length;i++)
-                   {
+               else {
+                    for(var i=0;i<files.length;i++) {
+
                     var obj = new Object();
                     obj.to = req.body.title;
                     obj.from = req.session.email;
@@ -26,12 +24,11 @@ exports.uploadmultiple = (req, res) => {
                     obj.type = files[i].mimetype;
                     obj.entryDate = req.body.entryDate;
 
-                    fileses.create(obj,function(error,res)
-                    {
-                        if(error)
-                         throw error;
-                    })
-                   }
+                        fileses.create(obj,function(error,res) {
+                            if(error)
+                            throw error;
+                        })
+                    }
                     res.send('true');
                }     
             }
@@ -40,16 +37,16 @@ exports.uploadmultiple = (req, res) => {
 
 exports.Userupload = (req, res) => {
     multer.uploadUserImage(req,res, (err) => {
-    if (err){ 
+    if (err)
         res.send("format")
-        }else{
-               if (req.file == undefined) {
+    else{
+            if (req.file == undefined) {
                 res.send('false');
-               }
-               else {
-                    req.session.photoname = '/' + req.file.filename;
-                    res.send('true');
-               }     
+            }
+            else {
+                req.session.photoname = '/' + req.file.filename;
+                res.send('true');
+            }     
         }
     })
 }
@@ -93,8 +90,7 @@ exports.showSendFiles = (req, res) => {
    
    query = {from: req.session.email};
 
-    if(req.body.search.value)
-    {
+    if(req.body.search.value) {
         query["$or"]= [{
             "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
         }, {
@@ -115,20 +111,15 @@ exports.showSendFiles = (req, res) => {
     else
         sortingType = -1;
   
-    fileses.find(query , {} , params , function (err , data)
-        {
+    fileses.find(query , {} , params , function (err , data) {
             if(err)
                 console.log(err);
-            else
-            {
-                fileses.countDocuments(query, function(err , filteredCount)
-                {
+            else {
+                fileses.countDocuments(query, function(err , filteredCount) {
                     if(err)
                         console.log(err);
-                    else
-                    {
-                        fileses.countDocuments(function (err, totalCount)
-                        {
+                    else {
+                        fileses.countDocuments(function (err, totalCount)  {
                             if(err)
                                 console.log(err);
                             else
@@ -162,8 +153,7 @@ exports.recentFiles = (req, res) => {
    
    query = {to: req.session.email,entryDate: req.body.entryDate};
 
-    if(req.body.search.value)
-    {
+    if(req.body.search.value) {
         query["$or"]= [{
             "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
         }, {
@@ -178,26 +168,22 @@ exports.recentFiles = (req, res) => {
             "entryDate": { '$regex' : req.body.search.value, '$options' : 'i' }
         }]
     }
+
     let sortingType;
     if(req.body.order[0].dir === 'asc')
         sortingType = 1;
     else
         sortingType = -1;
   
-    fileses.find(query , {} , params , function (err , data)
-        {
+    fileses.find(query , {} , params , function (err , data) {
             if(err)
                 console.log(err);
-            else
-            {
-                fileses.countDocuments(query, function(err , filteredCount)
-                {
+            else {
+                fileses.countDocuments(query, function(err , filteredCount)  {
                     if(err)
                         console.log(err);
-                    else
-                    {
-                        fileses.countDocuments(function (err, totalCount)
-                        {
+                    else {
+                        fileses.countDocuments(function (err, totalCount)  {
                             if(err)
                                 console.log(err);
                             else
@@ -216,8 +202,7 @@ exports.receivedFiles = (req, res) => {
    
    query = {to: req.session.email};
 
-    if(req.body.search.value)
-    {
+    if(req.body.search.value) {
         query["$or"]= [{
             "originalName":  { '$regex' : req.body.search.value, '$options' : 'i' }
         }, {
@@ -238,20 +223,15 @@ exports.receivedFiles = (req, res) => {
     else
         sortingType = -1;
   
-    fileses.find(query , {} , params , function (err , data)
-        {
+    fileses.find(query , {} , params , function (err , data) {
             if(err)
                 console.log(err);
-            else
-            {
-                fileses.countDocuments(query, function(err , filteredCount)
-                {
+            else {
+                fileses.countDocuments(query, function(err , filteredCount) {
                     if(err)
                         console.log(err);
-                    else
-                    {
-                        fileses.countDocuments(function (err, totalCount)
-                        {
+                    else  {
+                        fileses.countDocuments(function (err, totalCount) {
                             if(err)
                                 console.log(err);
                             else
