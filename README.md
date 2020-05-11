@@ -1,5 +1,28 @@
 # File_Sharing_System
-File Sharing Web App to share files like images,pdf with your friends using Nodejs,MongoDb
+
+File Sharing Web App to share files like images,pdf with your friends in the college using Nodejs,MongoDb,Bootstrap !!
+
+## How To Run?
+
+To run this website run this command on command prompt on root folder.
+
+```
+npm start or node app.js
+```
+
+It will run under the url http://127.0.0.1:3000/
+
+## Login Details
+
+Email and Password for Website:<br>
+
+Admin :<br>
+Email :admin@cq.com<br>
+Password: admincq<br>
+
+User:<br>
+Email : bro@gmail.com<br>
+Password: admincq<br>
 
 ## Features
 <ul>
@@ -11,9 +34,6 @@ File Sharing Web App to share files like images,pdf with your friends using Node
   <li>Seprate View for records of received files</li>
 </ul>
 
-## How To Run?
-It will run under the url http://127.0.0.1:8000/
-
 ## How to Use ?
 <ol type="number">
 <li> Use mongorestore command to add database to your Local Machine.</li>
@@ -24,7 +44,13 @@ It will run under the url http://127.0.0.1:8000/
 <li>Login using admin id or user id (For id and password see database)</li>
 </ol>
 
-## Extra Dependencies :
+## Pre-requisites
+
+- Node JS (Tested on v12.14.0)
+- Mongoose
+- Pre-requisites or Dependencies(Below)
+
+## Dependencies :
 
 <ul>
   <li>Mongoose</li>
@@ -35,10 +61,44 @@ It will run under the url http://127.0.0.1:8000/
   <li>Bcrypt Module</li>
 </ul>
 
-## Login :
+- Express
 
-<ul>
-  <li> ID - admin@cq.com </li>
-  <li> Password - admincq </li>
-</ul>
+```
+npm install express
+```
 
+- EJS
+
+```
+npm install ejs
+```
+
+- Express-Session
+
+```
+npm install express-session
+```
+
+- Multer
+
+```
+npm install multer
+```
+
+- Mongoose
+
+```
+npm install mongoose
+```
+
+- Dotenv
+
+```
+npm install dotenv
+```
+
+- Bcrypt
+
+```
+npm install bcrypt  / npm i bcrypt
+```
