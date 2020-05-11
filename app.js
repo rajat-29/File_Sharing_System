@@ -42,4 +42,8 @@ mongoose.connection.on('connected',(err) => {
 
 app.use('/',require('./Routes/'));
 
+app.get('/', function(req,res) {
+    res.render('login');
+})
+
 app.listen(port,()=>{console.log("Running on port "+port);});

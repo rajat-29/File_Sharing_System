@@ -20,7 +20,7 @@ app.get('/changePassword',auth,function(req,res) {
 app.get('/logout', auth,function(req,res) {
     req.session.isLogin = 0;
     req.session.destroy();
-    res.render('index');
+    res.render('login');
 })
 
 app.get('/sendFile',function(req,res) {
