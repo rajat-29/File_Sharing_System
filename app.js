@@ -4,7 +4,7 @@ var app = express()
 var session = require('express-session');
 var ejs = require('ejs');
 var mongoose = require('mongoose');	
-var port=8000;
+var port=3000;
 
 app.set('views', path.join(__dirname, 'Views'));  // view engine setup
 app.set('view engine', 'ejs');
