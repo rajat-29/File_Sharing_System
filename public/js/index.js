@@ -73,10 +73,6 @@ user_submit.addEventListener("click", function() {
 	})
 })
 
-signUp.addEventListener("click", function() {
-	window.location = "/login/signUp";
-})
-
 sendFile.addEventListener("click", function() {
 	window.location = "/login/sendFile";
 })
