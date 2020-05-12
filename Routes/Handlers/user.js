@@ -9,41 +9,41 @@ var auth=require('../../MiddleWares/auth');
 
 let userController = require('../../Controllers/user');
 
-app.get('/uploadFile',auth.checkUser, function(req,res) {
-	res.render('uploadFile',{data : req.session});
+app.get('/uploadFile',auth.checkSession, function(req,res) {
+	res.render('uploadFile',{data : req.session,title : 'Upload File'});
 })
 
-app.get('/sendFileRecords',auth.checkUser, function(req,res) {
-    res.render('sendFileRecords',{data : req.session});
+app.get('/sendFileRecords',auth.checkSession, function(req,res) {
+    res.render('sendFileRecords',{data : req.session,title : 'Send Files'});
 })
 
-app.get('/downloadSendFiles/:pro',auth.checkUser,function(req,res) {
+app.get('/downloadSendFiles/:pro',auth.checkSession,function(req,res) {
     var filePath = '../../public/uploads/' + req.params.pro.toString();
     res.download(path.join(__dirname, filePath));
 })
 
-app.get('/recentFiles',auth.checkUser, function(req,res) {
-    res.render('recentFiles',{data : req.session});
+app.get('/recentFiles',auth.checkSession, function(req,res) {
+    res.render('recentFiles',{data : req.session,title : 'Recent Files'});
 })
 
-app.get('/receivedFiles',auth.checkUser, function(req,res) {
-    res.render('receivedFiles',{data : req.session});
+app.get('/receivedFiles',auth.checkSession, function(req,res) {
+    res.render('receivedFiles',{data : req.session,title : 'Received Files'});
 })
 
 // controllers //
 
-app.use('/uploadmultiple',auth.checkUser,userController.uploadmultiple);
+app.use('/uploadmultiple',auth.checkSession,userController.uploadmultiple);
 
-app.use('/Userupload',auth.checkUser,userController.Userupload);
+app.use('/Userupload',auth.checkSession,userController.Userupload);
 
-app.use('/uploadmultipleWithoutLogin',auth.checkUser,userController.uploadmultipleWithoutLogin);
+app.use('/uploadmultipleWithoutLogin',auth.checkSession,userController.uploadmultipleWithoutLogin);
 
-app.use('/showSendFiles',auth.checkUser,userController.showSendFiles);
+app.use('/showSendFiles',auth.checkSession,userController.showSendFiles);
 
-app.use('/deleteSendFiles',auth.checkUser,userController.deleteSendFiles);
+app.use('/deleteSendFiles',auth.checkSession,userController.deleteSendFiles);
 
-app.use('/recentFiles',auth.checkUser,userController.recentFiles);
+app.use('/recentFiles',auth.checkSession,userController.recentFiles);
 
-app.use('/receivedFiles',auth.checkUser,userController.receivedFiles);
+app.use('/receivedFiles',auth.checkSession,userController.receivedFiles);
 
 module.exports = app;

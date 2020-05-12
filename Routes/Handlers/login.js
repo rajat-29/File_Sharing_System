@@ -10,11 +10,11 @@ var auth=require('../../MiddleWares/auth');
 let loginController = require('../../Controllers/login');
 
 app.get('/home',auth.checkSession,function(req,res) {
-	res.render('dashboard',{data : req.session});
+	res.render('dashboard',{data : req.session,title : 'Dashboard'});
 })
 
 app.get('/changePassword',auth.checkSession,function(req,res) {
-	res.render('changePassword',{data : req.session});
+	res.render('changePassword',{data : req.session,title : 'Change Password'});
 })
 
 app.get('/logout', auth.checkSession,function(req,res) {
@@ -24,11 +24,11 @@ app.get('/logout', auth.checkSession,function(req,res) {
 })
 
 app.get('/editProfile',auth.checkSession,function(req,res) {
-  res.render('ProfileDetails',{data : req.session});
+  res.render('ProfileDetails',{data : req.session,title : 'Edit Profile'});
 })
 
 app.get('/newProfileUpdate',auth.checkSession,function(req,res) {
-  res.render('newProfileUpdate',{data : req.session});
+  res.render('newProfileUpdate',{data : req.session,title : 'New User'});
 })
 
 // controllers //

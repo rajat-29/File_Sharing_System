@@ -10,15 +10,15 @@ var auth=require('../../MiddleWares/auth');
 let adminController = require('../../Controllers/admin');
 
 app.get('/addUser',auth.checkAdmin, function(req,res) {
-	res.render('addUser',{data : req.session});
+	res.render('addUser',{data : req.session,title : 'Add User'});
 })
 
 app.get('/manage_users',auth.checkAdmin,function(req,res){  
-      res.render('manage_users', {data: req.session});
+      res.render('manage_users', {data: req.session,title : 'Manage User'});
 }) 
 
 app.get('/manage_files',auth.checkAdmin, function(req,res) {
-    res.render('manage_files',{data : req.session});
+    res.render('manage_files',{data : req.session,title : 'Manage Files'});
 })
 
 // controllers //
@@ -39,6 +39,6 @@ app.use('/switchasuser',auth.checkSession,adminController.switchasuser);
 
 app.use('/switchasadmin',auth.checkSession,adminController.switchasadmin);
 
-app.use('/checkemail',auth.checkAdmin,adminController.checkemail);
+app.use('/checkemail',auth.checkSession,adminController.checkemail);
 
 module.exports = app;
