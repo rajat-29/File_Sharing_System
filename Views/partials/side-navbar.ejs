@@ -1,11 +1,12 @@
 <div id="sidebar">
     <ul class="sidebar-list">
+        
         <li class="list">
         <a onclick="openbar()" id="open">
             <span class="list-span">
                 <i class="fas fa-bars" id="icon"></i>
             </span>
-                Cq
+                File Sharing
         </a>
         </li>
      
@@ -35,7 +36,7 @@
                 <span class="list-span">
                     <i class="fas fa-list" id="icon"></i>
                 </span>
-                Users List
+                Manage Users
             </a>
            </li>            
         <% } %>
@@ -46,7 +47,7 @@
                 <span class="list-span">
                     <i class="fas fa-copy" id="icon"></i>
                 </span>
-                All Files
+                Manage Files
               </a>
            </li>
         <% } %>
@@ -149,11 +150,9 @@ function openbar() {
     var element = document.getElementById("sidebar");
     element.classList.toggle("sidebar-width");
 
-
     var element = document.getElementById("rightview");
     element.classList.toggle("set-rightview");
 }
-
 
 function switchasuser() {
       $.confirm({
@@ -219,4 +218,5 @@ function openlogoutpage() {
 function editProfile() {
     window.location = '/login/editProfile';
 }
+
 </script>
